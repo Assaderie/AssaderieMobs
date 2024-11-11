@@ -1,0 +1,958 @@
+2024-10-21 21:30:45 [INFO] Starting minecraft server version 1.4.7
+2024-10-21 21:30:46 [INFO] Loading properties
+2024-10-21 21:30:46 [INFO] Default game type: SURVIVAL
+2024-10-21 21:30:46 [INFO] Generating keypair
+2024-10-21 21:30:48 [INFO] Starting Minecraft server on *:25565
+2024-10-21 21:30:48 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-21 21:30:48 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-21 21:30:48 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-21 21:30:48 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-21 21:30:48 [WARNING] Failed to load operators list: java.io.FileNotFoundException: .\ops.txt (Le fichier spécifié est introuvable)
+2024-10-21 21:30:48 [WARNING] Failed to load white-list: java.io.FileNotFoundException: .\white-list.txt (Le fichier spécifié est introuvable)
+2024-10-21 21:30:48 [INFO] Preparing level "mcpworld"
+2024-10-21 21:30:49 [INFO] Preparing start region for level 0
+2024-10-21 21:30:50 [INFO] Preparing spawn area: 5%
+2024-10-21 21:30:51 [INFO] Preparing spawn area: 13%
+2024-10-21 21:30:52 [INFO] Preparing spawn area: 23%
+2024-10-21 21:30:53 [INFO] Preparing spawn area: 34%
+2024-10-21 21:30:54 [INFO] Preparing spawn area: 44%
+2024-10-21 21:30:55 [INFO] Preparing spawn area: 57%
+2024-10-21 21:30:56 [INFO] Preparing spawn area: 70%
+2024-10-21 21:30:57 [INFO] Preparing spawn area: 85%
+2024-10-21 21:30:58 [INFO] Done (9,980s)! For help, type "help" or "?"
+2024-10-21 21:31:11 [INFO] User Player124 connecting with mods [assaderieMobs]
+2024-10-21 21:31:11 [INFO] Player124[/127.0.0.1:63686] logged in with entity id 4571 at (-10.5, 78.62000000476837, 190.5)
+2024-10-21 21:31:12 [SEVERE] Encountered an unexpected exception ReportedException
+net.minecraft.util.ReportedException: Ticking entity
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:686)
+	at net.minecraft.server.dedicated.DedicatedServer.updateTimeLightAndEntities(DedicatedServer.java:269)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:599)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:497)
+	at net.minecraft.server.ThreadMinecraftServer.run(ThreadMinecraftServer.java:16)
+Caused by: java.lang.NoClassDefFoundError: net/minecraft/client/Minecraft
+	at fr.assaderie.mobs.utils.ZombieSoundPlayer.playZombieSaySound(ZombieSoundPlayer.java:10)
+	at fr.assaderie.mobs.entity.ZombieFiveEntity.getLivingSound(ZombieFiveEntity.java:118)
+	at net.minecraft.entity.EntityLiving.playLivingSound(EntityLiving.java:555)
+	at net.minecraft.entity.EntityLiving.onEntityUpdate(EntityLiving.java:575)
+	at net.minecraft.entity.Entity.onUpdate(Entity.java:431)
+	at net.minecraft.entity.EntityLiving.onUpdate(EntityLiving.java:808)
+	at net.minecraft.entity.monster.EntityMob.onUpdate(EntityMob.java:45)
+	at net.minecraft.entity.monster.EntityZombie.onUpdate(EntityZombie.java:201)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:2293)
+	at net.minecraft.world.WorldServer.updateEntityWithOptionalForce(WorldServer.java:647)
+	at net.minecraft.world.World.updateEntity(World.java:2255)
+	at net.minecraft.world.World.updateEntities(World.java:2109)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:516)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:680)
+	... 4 more
+Caused by: java.lang.ClassNotFoundException: net.minecraft.client.Minecraft
+	at cpw.mods.fml.relauncher.RelaunchClassLoader.findClass(RelaunchClassLoader.java:185)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:247)
+	... 18 more
+Caused by: java.lang.RuntimeException: Attempted to load class net/minecraft/client/Minecraft for invalid side SERVER
+	at cpw.mods.fml.common.asm.transformers.SideTransformer.transform(SideTransformer.java:38)
+	at cpw.mods.fml.relauncher.RelaunchClassLoader.runTransformers(RelaunchClassLoader.java:228)
+	at cpw.mods.fml.relauncher.RelaunchClassLoader.findClass(RelaunchClassLoader.java:173)
+	... 20 more
+2024-10-21 21:31:12 [SEVERE] This crash report has been saved to: F:\Assaderie\Mods\AssaderieMobs\jars\.\crash-reports\crash-2024-10-21_21.31.12-server.txt
+2024-10-21 21:31:30 [INFO] Opped Player124
+2024-10-21 21:32:05 [INFO] Starting minecraft server version 1.4.7
+2024-10-21 21:32:07 [INFO] Loading properties
+2024-10-21 21:32:07 [INFO] Default game type: SURVIVAL
+2024-10-21 21:32:07 [INFO] Generating keypair
+2024-10-21 21:32:09 [INFO] Starting Minecraft server on *:25565
+2024-10-21 21:32:09 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-21 21:32:09 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-21 21:32:09 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-21 21:32:09 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-21 21:32:09 [INFO] Preparing level "mcpworld"
+2024-10-21 21:32:09 [INFO] Preparing start region for level 0
+2024-10-21 21:32:10 [INFO] Preparing spawn area: 8%
+2024-10-21 21:32:11 [INFO] Preparing spawn area: 21%
+2024-10-21 21:32:12 [INFO] Preparing spawn area: 35%
+2024-10-21 21:32:13 [INFO] Preparing spawn area: 52%
+2024-10-21 21:32:14 [INFO] Preparing spawn area: 69%
+2024-10-21 21:32:15 [INFO] Preparing spawn area: 85%
+2024-10-21 21:32:17 [INFO] Done (7,651s)! For help, type "help" or "?"
+2024-10-21 21:32:17 [INFO] /127.0.0.1:63723 lost connection
+2024-10-21 21:32:22 [INFO] User Player607 connecting with mods [assaderieMobs]
+2024-10-21 21:32:23 [INFO] Player607[/127.0.0.1:63730] logged in with entity id 1823 at (-9.5, 65.62000000476837, 199.5)
+2024-10-21 21:32:23 [SEVERE] Encountered an unexpected exception ReportedException
+net.minecraft.util.ReportedException: Ticking entity
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:686)
+	at net.minecraft.server.dedicated.DedicatedServer.updateTimeLightAndEntities(DedicatedServer.java:269)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:599)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:497)
+	at net.minecraft.server.ThreadMinecraftServer.run(ThreadMinecraftServer.java:16)
+Caused by: java.lang.NoClassDefFoundError: net/minecraft/client/Minecraft
+	at fr.assaderie.mobs.utils.ZombieSoundPlayer.playZombieSaySound(ZombieSoundPlayer.java:10)
+	at fr.assaderie.mobs.entity.ZombieOneEntity.getLivingSound(ZombieOneEntity.java:119)
+	at net.minecraft.entity.EntityLiving.playLivingSound(EntityLiving.java:555)
+	at net.minecraft.entity.EntityLiving.onEntityUpdate(EntityLiving.java:575)
+	at net.minecraft.entity.Entity.onUpdate(Entity.java:431)
+	at net.minecraft.entity.EntityLiving.onUpdate(EntityLiving.java:808)
+	at net.minecraft.entity.monster.EntityMob.onUpdate(EntityMob.java:45)
+	at net.minecraft.entity.monster.EntityZombie.onUpdate(EntityZombie.java:201)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:2293)
+	at net.minecraft.world.WorldServer.updateEntityWithOptionalForce(WorldServer.java:647)
+	at net.minecraft.world.World.updateEntity(World.java:2255)
+	at net.minecraft.world.World.updateEntities(World.java:2109)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:516)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:680)
+	... 4 more
+Caused by: java.lang.ClassNotFoundException: net.minecraft.client.Minecraft
+	at cpw.mods.fml.relauncher.RelaunchClassLoader.findClass(RelaunchClassLoader.java:185)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:247)
+	... 18 more
+Caused by: java.lang.RuntimeException: Attempted to load class net/minecraft/client/Minecraft for invalid side SERVER
+	at cpw.mods.fml.common.asm.transformers.SideTransformer.transform(SideTransformer.java:38)
+	at cpw.mods.fml.relauncher.RelaunchClassLoader.runTransformers(RelaunchClassLoader.java:228)
+	at cpw.mods.fml.relauncher.RelaunchClassLoader.findClass(RelaunchClassLoader.java:173)
+	... 20 more
+2024-10-21 21:32:23 [SEVERE] This crash report has been saved to: F:\Assaderie\Mods\AssaderieMobs\jars\.\crash-reports\crash-2024-10-21_21.32.23-server.txt
+2024-10-21 21:34:22 [INFO] Stopping server
+2024-10-21 21:34:22 [INFO] Saving players
+2024-10-21 21:34:22 [INFO] Saving worlds
+2024-10-21 21:34:22 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-21 21:35:14 [INFO] Starting minecraft server version 1.4.7
+2024-10-21 21:35:16 [INFO] Loading properties
+2024-10-21 21:35:16 [INFO] Default game type: SURVIVAL
+2024-10-21 21:35:16 [INFO] Generating keypair
+2024-10-21 21:35:17 [INFO] Starting Minecraft server on *:25565
+2024-10-21 21:35:17 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-21 21:35:17 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-21 21:35:17 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-21 21:35:17 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-21 21:35:18 [INFO] Preparing level "mcpworld"
+2024-10-21 21:35:18 [INFO] Preparing start region for level 0
+2024-10-21 21:35:19 [INFO] Preparing spawn area: 40%
+2024-10-21 21:35:20 [INFO] Preparing spawn area: 53%
+2024-10-21 21:35:21 [INFO] Preparing spawn area: 72%
+2024-10-21 21:35:22 [INFO] Preparing spawn area: 90%
+2024-10-21 21:35:23 [INFO] Done (4,860s)! For help, type "help" or "?"
+2024-10-21 21:35:23 [SEVERE] Encountered an unexpected exception ReportedException
+net.minecraft.util.ReportedException: Ticking entity
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:686)
+	at net.minecraft.server.dedicated.DedicatedServer.updateTimeLightAndEntities(DedicatedServer.java:269)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:599)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:497)
+	at net.minecraft.server.ThreadMinecraftServer.run(ThreadMinecraftServer.java:16)
+Caused by: java.lang.NoSuchMethodError: fr.assaderie.mobs.utils.ZombieSoundPlayer.playZombieSaySound()Ljava/lang/String;
+	at fr.assaderie.mobs.entity.ZombieOneEntity.getLivingSound(ZombieOneEntity.java:119)
+	at net.minecraft.entity.EntityLiving.playLivingSound(EntityLiving.java:555)
+	at net.minecraft.entity.EntityLiving.onEntityUpdate(EntityLiving.java:575)
+	at net.minecraft.entity.Entity.onUpdate(Entity.java:431)
+	at net.minecraft.entity.EntityLiving.onUpdate(EntityLiving.java:808)
+	at net.minecraft.entity.monster.EntityMob.onUpdate(EntityMob.java:45)
+	at net.minecraft.entity.monster.EntityZombie.onUpdate(EntityZombie.java:201)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:2293)
+	at net.minecraft.world.WorldServer.updateEntityWithOptionalForce(WorldServer.java:647)
+	at net.minecraft.world.World.updateEntity(World.java:2255)
+	at net.minecraft.world.World.updateEntities(World.java:2109)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:516)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:680)
+	... 4 more
+2024-10-21 21:35:23 [SEVERE] This crash report has been saved to: F:\Assaderie\Mods\AssaderieMobs\jars\.\crash-reports\crash-2024-10-21_21.35.23-server.txt
+2024-10-21 21:35:26 [INFO] Stopping server
+2024-10-21 21:35:26 [INFO] Saving players
+2024-10-21 21:35:26 [INFO] Saving worlds
+2024-10-21 21:35:26 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-21 21:38:28 [INFO] Starting minecraft server version 1.4.7
+2024-10-21 21:38:30 [INFO] Loading properties
+2024-10-21 21:38:30 [INFO] Default game type: SURVIVAL
+2024-10-21 21:38:30 [INFO] Generating keypair
+2024-10-21 21:38:31 [INFO] Starting Minecraft server on *:25565
+2024-10-21 21:38:31 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-21 21:38:31 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-21 21:38:31 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-21 21:38:31 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-21 21:38:31 [INFO] Preparing level "mcpworld"
+2024-10-21 21:38:31 [INFO] Preparing start region for level 0
+2024-10-21 21:38:32 [INFO] Preparing spawn area: 45%
+2024-10-21 21:38:33 [INFO] Preparing spawn area: 58%
+2024-10-21 21:38:34 [INFO] Preparing spawn area: 77%
+2024-10-21 21:38:35 [INFO] Preparing spawn area: 98%
+2024-10-21 21:38:35 [INFO] Done (4,259s)! For help, type "help" or "?"
+2024-10-21 21:38:36 [SEVERE] Encountered an unexpected exception ReportedException
+net.minecraft.util.ReportedException: Ticking entity
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:686)
+	at net.minecraft.server.dedicated.DedicatedServer.updateTimeLightAndEntities(DedicatedServer.java:269)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:599)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:497)
+	at net.minecraft.server.ThreadMinecraftServer.run(ThreadMinecraftServer.java:16)
+Caused by: java.lang.NoSuchMethodError: fr.assaderie.mobs.utils.ZombieSoundPlayer.playZombieSaySound()Ljava/lang/String;
+	at fr.assaderie.mobs.entity.ZombieFourEntity.getLivingSound(ZombieFourEntity.java:118)
+	at net.minecraft.entity.EntityLiving.playLivingSound(EntityLiving.java:555)
+	at net.minecraft.entity.EntityLiving.onEntityUpdate(EntityLiving.java:575)
+	at net.minecraft.entity.Entity.onUpdate(Entity.java:431)
+	at net.minecraft.entity.EntityLiving.onUpdate(EntityLiving.java:808)
+	at net.minecraft.entity.monster.EntityMob.onUpdate(EntityMob.java:45)
+	at net.minecraft.entity.monster.EntityZombie.onUpdate(EntityZombie.java:201)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:2293)
+	at net.minecraft.world.WorldServer.updateEntityWithOptionalForce(WorldServer.java:647)
+	at net.minecraft.world.World.updateEntity(World.java:2255)
+	at net.minecraft.world.World.updateEntities(World.java:2109)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:516)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:680)
+	... 4 more
+2024-10-21 21:38:36 [SEVERE] This crash report has been saved to: F:\Assaderie\Mods\AssaderieMobs\jars\.\crash-reports\crash-2024-10-21_21.38.36-server.txt
+2024-10-21 21:43:40 [INFO] Starting minecraft server version 1.4.7
+2024-10-21 21:43:42 [INFO] Loading properties
+2024-10-21 21:43:42 [INFO] Default game type: SURVIVAL
+2024-10-21 21:43:42 [INFO] Generating keypair
+2024-10-21 21:43:43 [INFO] Starting Minecraft server on *:25565
+2024-10-21 21:43:43 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-21 21:43:43 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-21 21:43:43 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-21 21:43:43 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-21 21:43:44 [INFO] Preparing level "mcpworld"
+2024-10-21 21:43:44 [INFO] Preparing start region for level 0
+2024-10-21 21:43:45 [INFO] Preparing spawn area: 45%
+2024-10-21 21:43:46 [INFO] Preparing spawn area: 56%
+2024-10-21 21:43:47 [INFO] Preparing spawn area: 75%
+2024-10-21 21:43:48 [INFO] Preparing spawn area: 95%
+2024-10-21 21:43:48 [INFO] Done (4,734s)! For help, type "help" or "?"
+2024-10-21 21:43:49 [SEVERE] Encountered an unexpected exception ReportedException
+net.minecraft.util.ReportedException: Ticking entity
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:686)
+	at net.minecraft.server.dedicated.DedicatedServer.updateTimeLightAndEntities(DedicatedServer.java:269)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:599)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:497)
+	at net.minecraft.server.ThreadMinecraftServer.run(ThreadMinecraftServer.java:16)
+Caused by: java.lang.Error: Unresolved compilation problem: 
+	Cannot return a void result
+
+	at fr.assaderie.mobs.entity.ZombieFourEntity.getLivingSound(ZombieFourEntity.java:118)
+	at net.minecraft.entity.EntityLiving.playLivingSound(EntityLiving.java:555)
+	at net.minecraft.entity.EntityLiving.onEntityUpdate(EntityLiving.java:575)
+	at net.minecraft.entity.Entity.onUpdate(Entity.java:431)
+	at net.minecraft.entity.EntityLiving.onUpdate(EntityLiving.java:808)
+	at net.minecraft.entity.monster.EntityMob.onUpdate(EntityMob.java:45)
+	at net.minecraft.entity.monster.EntityZombie.onUpdate(EntityZombie.java:201)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:2293)
+	at net.minecraft.world.WorldServer.updateEntityWithOptionalForce(WorldServer.java:647)
+	at net.minecraft.world.World.updateEntity(World.java:2255)
+	at net.minecraft.world.World.updateEntities(World.java:2109)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:516)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:680)
+	... 4 more
+2024-10-21 21:43:49 [SEVERE] This crash report has been saved to: F:\Assaderie\Mods\AssaderieMobs\jars\.\crash-reports\crash-2024-10-21_21.43.49-server.txt
+2024-10-21 21:44:15 [INFO] Stopping server
+2024-10-21 21:44:15 [INFO] Saving players
+2024-10-21 21:44:15 [INFO] Saving worlds
+2024-10-21 21:44:15 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-21 21:44:17 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-21 21:44:17 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-21 21:45:04 [INFO] Starting minecraft server version 1.4.7
+2024-10-21 21:45:06 [INFO] Loading properties
+2024-10-21 21:45:06 [INFO] Default game type: SURVIVAL
+2024-10-21 21:45:06 [INFO] Generating keypair
+2024-10-21 21:45:07 [INFO] Starting Minecraft server on *:25565
+2024-10-21 21:45:07 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-21 21:45:07 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-21 21:45:07 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-21 21:45:07 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-21 21:45:07 [INFO] Preparing level "mcpworld"
+2024-10-21 21:45:07 [INFO] Preparing start region for level 0
+2024-10-21 21:45:08 [INFO] Preparing spawn area: 80%
+2024-10-21 21:45:08 [INFO] Done (1,336s)! For help, type "help" or "?"
+2024-10-21 21:45:33 [INFO] User Player381 connecting with mods [assaderieMobs]
+2024-10-21 21:45:33 [INFO] Player381[/127.0.0.1:64230] logged in with entity id 4920 at (0.5, 65.62000000476837, 198.5)
+2024-10-21 21:45:44 [INFO] Opped plqyer"_&
+2024-10-21 21:45:51 [INFO] Opped player381
+2024-10-21 21:45:56 [INFO] [Player381: Set own game mode to Creative Mode]
+2024-10-21 21:48:28 [INFO] Player381 lost connection: disconnect.quitting
+2024-10-21 21:48:31 [INFO] Stopping server
+2024-10-21 21:48:31 [INFO] Saving players
+2024-10-21 21:48:31 [INFO] Saving worlds
+2024-10-21 21:48:31 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-21 21:48:31 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-21 21:48:31 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-22 13:03:31 [INFO] Starting minecraft server version 1.4.7
+2024-10-22 13:03:32 [INFO] Loading properties
+2024-10-22 13:03:32 [INFO] Default game type: SURVIVAL
+2024-10-22 13:03:32 [INFO] Generating keypair
+2024-10-22 13:03:33 [INFO] Starting Minecraft server on *:25565
+2024-10-22 13:03:33 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-22 13:03:33 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-22 13:03:33 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-22 13:03:33 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-22 13:03:33 [INFO] Preparing level "mcpworld"
+2024-10-22 13:03:33 [INFO] Preparing start region for level 0
+2024-10-22 13:03:34 [INFO] Done (1,004s)! For help, type "help" or "?"
+2024-10-22 13:03:40 [INFO] Stopping server
+2024-10-22 13:03:40 [INFO] Saving players
+2024-10-22 13:03:40 [INFO] Saving worlds
+2024-10-22 13:03:40 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-22 13:03:40 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-22 13:03:40 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-22 13:25:51 [INFO] Starting minecraft server version 1.4.7
+2024-10-22 13:25:53 [INFO] Loading properties
+2024-10-22 13:25:53 [INFO] Default game type: SURVIVAL
+2024-10-22 13:25:53 [INFO] Generating keypair
+2024-10-22 13:25:54 [INFO] Starting Minecraft server on *:25565
+2024-10-22 13:25:54 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-22 13:25:54 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-22 13:25:54 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-22 13:25:54 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-22 13:25:55 [INFO] Preparing level "mcpworld"
+2024-10-22 13:25:55 [INFO] Preparing start region for level 0
+2024-10-22 13:25:55 [INFO] Done (0,926s)! For help, type "help" or "?"
+2024-10-22 13:25:59 [INFO] Stopping server
+2024-10-22 13:25:59 [INFO] Saving players
+2024-10-22 13:25:59 [INFO] Saving worlds
+2024-10-22 13:25:59 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-22 13:25:59 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-22 13:25:59 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-22 13:40:26 [INFO] Starting minecraft server version 1.4.7
+2024-10-22 13:40:28 [INFO] Loading properties
+2024-10-22 13:40:28 [INFO] Default game type: SURVIVAL
+2024-10-22 13:40:28 [INFO] Generating keypair
+2024-10-22 13:40:29 [INFO] Starting Minecraft server on *:25565
+2024-10-22 13:40:29 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-22 13:40:29 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-22 13:40:29 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-22 13:40:29 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-22 13:40:29 [INFO] Preparing level "mcpworld"
+2024-10-22 13:40:30 [INFO] Preparing start region for level 0
+2024-10-22 13:40:30 [INFO] Done (0,958s)! For help, type "help" or "?"
+2024-10-22 13:40:31 [SEVERE] Encountered an unexpected exception ReportedException
+net.minecraft.util.ReportedException: Ticking entity
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:686)
+	at net.minecraft.server.dedicated.DedicatedServer.updateTimeLightAndEntities(DedicatedServer.java:269)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:599)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:497)
+	at net.minecraft.server.ThreadMinecraftServer.run(ThreadMinecraftServer.java:16)
+Caused by: java.lang.NoSuchMethodError: fr.assaderie.mobs.utils.ZombieSoundPlayer.playZombieSaySound()Ljava/lang/String;
+	at fr.assaderie.mobs.entity.ZombieOneEntity.getLivingSound(ZombieOneEntity.java:107)
+	at net.minecraft.entity.EntityLiving.playLivingSound(EntityLiving.java:555)
+	at net.minecraft.entity.EntityLiving.onEntityUpdate(EntityLiving.java:575)
+	at net.minecraft.entity.Entity.onUpdate(Entity.java:431)
+	at net.minecraft.entity.EntityLiving.onUpdate(EntityLiving.java:808)
+	at net.minecraft.entity.monster.EntityMob.onUpdate(EntityMob.java:45)
+	at net.minecraft.entity.monster.EntityZombie.onUpdate(EntityZombie.java:201)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:2293)
+	at net.minecraft.world.WorldServer.updateEntityWithOptionalForce(WorldServer.java:647)
+	at net.minecraft.world.World.updateEntity(World.java:2255)
+	at net.minecraft.world.World.updateEntities(World.java:2109)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:516)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:680)
+	... 4 more
+2024-10-22 13:40:31 [SEVERE] This crash report has been saved to: F:\Assaderie\Mods\AssaderieMobs\jars\.\crash-reports\crash-2024-10-22_13.40.31-server.txt
+2024-10-22 13:40:48 [INFO] Stopping server
+2024-10-22 13:40:48 [INFO] Saving players
+2024-10-22 13:40:48 [INFO] Saving worlds
+2024-10-22 13:40:48 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-22 13:40:48 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-22 13:40:48 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-22 13:42:21 [INFO] Starting minecraft server version 1.4.7
+2024-10-22 13:42:22 [INFO] Loading properties
+2024-10-22 13:42:22 [INFO] Default game type: SURVIVAL
+2024-10-22 13:42:22 [INFO] Generating keypair
+2024-10-22 13:42:23 [INFO] Starting Minecraft server on *:25565
+2024-10-22 13:42:23 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-22 13:42:23 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-22 13:42:23 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-22 13:42:23 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-22 13:42:23 [INFO] Preparing level "mcpworld"
+2024-10-22 13:42:24 [INFO] Preparing start region for level 0
+2024-10-22 13:42:24 [INFO] Done (0,765s)! For help, type "help" or "?"
+2024-10-22 13:42:25 [SEVERE] Encountered an unexpected exception ReportedException
+net.minecraft.util.ReportedException: Ticking entity
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:686)
+	at net.minecraft.server.dedicated.DedicatedServer.updateTimeLightAndEntities(DedicatedServer.java:269)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:599)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:497)
+	at net.minecraft.server.ThreadMinecraftServer.run(ThreadMinecraftServer.java:16)
+Caused by: java.lang.NoClassDefFoundError: net/minecraft/client/Minecraft
+	at fr.assaderie.mobs.utils.ZombieSoundPlayer.playZombieSaySound(ZombieSoundPlayer.java:13)
+	at fr.assaderie.mobs.entity.ZombieOneEntity.getLivingSound(ZombieOneEntity.java:107)
+	at net.minecraft.entity.EntityLiving.playLivingSound(EntityLiving.java:555)
+	at net.minecraft.entity.EntityLiving.onEntityUpdate(EntityLiving.java:575)
+	at net.minecraft.entity.Entity.onUpdate(Entity.java:431)
+	at net.minecraft.entity.EntityLiving.onUpdate(EntityLiving.java:808)
+	at net.minecraft.entity.monster.EntityMob.onUpdate(EntityMob.java:45)
+	at net.minecraft.entity.monster.EntityZombie.onUpdate(EntityZombie.java:201)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:2293)
+	at net.minecraft.world.WorldServer.updateEntityWithOptionalForce(WorldServer.java:647)
+	at net.minecraft.world.World.updateEntity(World.java:2255)
+	at net.minecraft.world.World.updateEntities(World.java:2109)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:516)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:680)
+	... 4 more
+Caused by: java.lang.ClassNotFoundException: net.minecraft.client.Minecraft
+	at cpw.mods.fml.relauncher.RelaunchClassLoader.findClass(RelaunchClassLoader.java:185)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:247)
+	... 18 more
+Caused by: java.lang.RuntimeException: Attempted to load class net/minecraft/client/Minecraft for invalid side SERVER
+	at cpw.mods.fml.common.asm.transformers.SideTransformer.transform(SideTransformer.java:38)
+	at cpw.mods.fml.relauncher.RelaunchClassLoader.runTransformers(RelaunchClassLoader.java:228)
+	at cpw.mods.fml.relauncher.RelaunchClassLoader.findClass(RelaunchClassLoader.java:173)
+	... 20 more
+2024-10-22 13:42:25 [SEVERE] This crash report has been saved to: F:\Assaderie\Mods\AssaderieMobs\jars\.\crash-reports\crash-2024-10-22_13.42.25-server.txt
+2024-10-22 13:42:26 [INFO] Stopping server
+2024-10-22 13:42:26 [INFO] Saving players
+2024-10-22 13:42:26 [INFO] Saving worlds
+2024-10-22 13:42:26 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-22 13:42:27 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-22 13:42:27 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-22 13:44:03 [INFO] Starting minecraft server version 1.4.7
+2024-10-22 13:44:05 [INFO] Loading properties
+2024-10-22 13:44:05 [INFO] Default game type: SURVIVAL
+2024-10-22 13:44:05 [INFO] Generating keypair
+2024-10-22 13:44:06 [INFO] Starting Minecraft server on *:25565
+2024-10-22 13:44:06 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-22 13:44:06 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-22 13:44:06 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-22 13:44:06 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-22 13:44:06 [INFO] Preparing level "mcpworld"
+2024-10-22 13:44:06 [INFO] Preparing start region for level 0
+2024-10-22 13:44:07 [INFO] Done (0,889s)! For help, type "help" or "?"
+2024-10-22 13:44:09 [INFO] Stopping server
+2024-10-22 13:44:09 [INFO] Saving players
+2024-10-22 13:44:09 [INFO] Saving worlds
+2024-10-22 13:44:09 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-22 13:44:10 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-22 13:44:10 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-22 13:44:14 [INFO] Starting minecraft server version 1.4.7
+2024-10-22 13:44:16 [INFO] Loading properties
+2024-10-22 13:44:16 [INFO] Default game type: SURVIVAL
+2024-10-22 13:44:16 [INFO] Generating keypair
+2024-10-22 13:44:17 [INFO] Starting Minecraft server on *:25565
+2024-10-22 13:44:17 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-22 13:44:17 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-22 13:44:17 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-22 13:44:17 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-22 13:44:17 [INFO] Preparing level "mcpworld"
+2024-10-22 13:44:18 [INFO] Preparing start region for level 0
+2024-10-22 13:44:18 [INFO] Done (1,143s)! For help, type "help" or "?"
+2024-10-22 13:44:25 [INFO] User Player422 connecting with mods [assaderieMobs]
+2024-10-22 13:44:25 [INFO] Player422[/127.0.0.1:60697] logged in with entity id 355 at (-2.5, 65.62000000476837, 201.5)
+2024-10-22 13:44:36 [INFO] Opped Player422
+2024-10-22 13:44:39 [INFO] [Player422: Set own game mode to Creative Mode]
+2024-10-22 13:44:47 [INFO] Player422 lost connection: disconnect.endOfStream
+2024-10-22 13:45:31 [INFO] User Player422 connecting with mods [assaderieMobs]
+2024-10-22 13:45:31 [INFO] Player422[/127.0.0.1:60736] logged in with entity id 412 at (0.782763140012981, 64.0, 204.04521930112787)
+2024-10-22 13:45:33 [INFO] Player422 lost connection: disconnect.endOfStream
+2024-10-22 13:46:23 [INFO] Stopping server
+2024-10-22 13:46:23 [INFO] Saving players
+2024-10-22 13:46:23 [INFO] Saving worlds
+2024-10-22 13:46:23 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-22 13:46:23 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-22 13:46:23 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-22 13:48:25 [INFO] Starting minecraft server version 1.4.7
+2024-10-22 13:48:26 [INFO] Loading properties
+2024-10-22 13:48:26 [INFO] Default game type: SURVIVAL
+2024-10-22 13:48:26 [INFO] Generating keypair
+2024-10-22 13:48:28 [INFO] Starting Minecraft server on *:25565
+2024-10-22 13:48:28 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-22 13:48:28 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-22 13:48:28 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-22 13:48:28 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-22 13:48:28 [INFO] Preparing level "mcpworld"
+2024-10-22 13:48:29 [INFO] Preparing start region for level 0
+2024-10-22 13:48:29 [INFO] Done (1,547s)! For help, type "help" or "?"
+2024-10-22 13:48:30 [SEVERE] Encountered an unexpected exception ReportedException
+net.minecraft.util.ReportedException: Ticking entity
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:686)
+	at net.minecraft.server.dedicated.DedicatedServer.updateTimeLightAndEntities(DedicatedServer.java:269)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:599)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:497)
+	at net.minecraft.server.ThreadMinecraftServer.run(ThreadMinecraftServer.java:16)
+Caused by: java.lang.NoClassDefFoundError: net/minecraft/client/Minecraft
+	at fr.assaderie.mobs.utils.ZombieSoundPlayer.playZombieSaySound(ZombieSoundPlayer.java:21)
+	at fr.assaderie.mobs.entity.ZombieOneEntity.getLivingSound(ZombieOneEntity.java:106)
+	at net.minecraft.entity.EntityLiving.playLivingSound(EntityLiving.java:555)
+	at net.minecraft.entity.EntityLiving.onEntityUpdate(EntityLiving.java:575)
+	at net.minecraft.entity.Entity.onUpdate(Entity.java:431)
+	at net.minecraft.entity.EntityLiving.onUpdate(EntityLiving.java:808)
+	at net.minecraft.entity.monster.EntityMob.onUpdate(EntityMob.java:45)
+	at net.minecraft.entity.monster.EntityZombie.onUpdate(EntityZombie.java:201)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:2293)
+	at net.minecraft.world.WorldServer.updateEntityWithOptionalForce(WorldServer.java:647)
+	at net.minecraft.world.World.updateEntity(World.java:2255)
+	at net.minecraft.world.World.updateEntities(World.java:2109)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:516)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:680)
+	... 4 more
+Caused by: java.lang.ClassNotFoundException: net.minecraft.client.Minecraft
+	at cpw.mods.fml.relauncher.RelaunchClassLoader.findClass(RelaunchClassLoader.java:185)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:247)
+	... 18 more
+Caused by: java.lang.RuntimeException: Attempted to load class net/minecraft/client/Minecraft for invalid side SERVER
+	at cpw.mods.fml.common.asm.transformers.SideTransformer.transform(SideTransformer.java:38)
+	at cpw.mods.fml.relauncher.RelaunchClassLoader.runTransformers(RelaunchClassLoader.java:228)
+	at cpw.mods.fml.relauncher.RelaunchClassLoader.findClass(RelaunchClassLoader.java:173)
+	... 20 more
+2024-10-22 13:48:30 [SEVERE] This crash report has been saved to: F:\Assaderie\Mods\AssaderieMobs\jars\.\crash-reports\crash-2024-10-22_13.48.30-server.txt
+2024-10-22 13:48:46 [INFO] Stopping server
+2024-10-22 13:48:46 [INFO] Saving players
+2024-10-22 13:48:46 [INFO] Saving worlds
+2024-10-22 13:48:46 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-22 13:48:46 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-22 13:48:46 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-22 13:51:30 [INFO] Starting minecraft server version 1.4.7
+2024-10-22 13:51:31 [INFO] Loading properties
+2024-10-22 13:51:31 [INFO] Default game type: SURVIVAL
+2024-10-22 13:51:31 [INFO] Generating keypair
+2024-10-22 13:51:32 [INFO] Starting Minecraft server on *:25565
+2024-10-22 13:51:32 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-22 13:51:32 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-22 13:51:32 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-22 13:51:32 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-22 13:51:32 [INFO] Preparing level "mcpworld"
+2024-10-22 13:51:32 [INFO] Preparing start region for level 0
+2024-10-22 13:51:33 [INFO] Done (0,854s)! For help, type "help" or "?"
+2024-10-22 13:51:56 [INFO] User Player972 connecting with mods [assaderieMobs]
+2024-10-22 13:51:56 [INFO] Player972[/127.0.0.1:60985] logged in with entity id 352 at (-2.5, 65.62000000476837, 201.5)
+2024-10-22 13:52:08 [INFO] Player972 lost connection: disconnect.quitting
+2024-10-22 13:52:12 [INFO] Stopping server
+2024-10-22 13:52:12 [INFO] Saving players
+2024-10-22 13:52:12 [INFO] Saving worlds
+2024-10-22 13:52:12 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-22 13:52:12 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-22 13:52:12 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-22 13:56:31 [INFO] Starting minecraft server version 1.4.7
+2024-10-22 13:56:32 [INFO] Loading properties
+2024-10-22 13:56:32 [INFO] Default game type: SURVIVAL
+2024-10-22 13:56:32 [INFO] Generating keypair
+2024-10-22 13:56:33 [INFO] Starting Minecraft server on *:25565
+2024-10-22 13:56:33 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-22 13:56:33 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-22 13:56:33 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-22 13:56:33 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-22 13:56:34 [INFO] Preparing level "mcpworld"
+2024-10-22 13:56:34 [INFO] Preparing start region for level 0
+2024-10-22 13:56:35 [INFO] Done (1,052s)! For help, type "help" or "?"
+2024-10-22 13:56:35 [SEVERE] Encountered an unexpected exception ReportedException
+net.minecraft.util.ReportedException: Ticking entity
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:686)
+	at net.minecraft.server.dedicated.DedicatedServer.updateTimeLightAndEntities(DedicatedServer.java:269)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:599)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:497)
+	at net.minecraft.server.ThreadMinecraftServer.run(ThreadMinecraftServer.java:16)
+Caused by: java.lang.NoSuchMethodError: fr.assaderie.mobs.utils.ZombieSoundPlayer.playZombieSaySound()V
+	at fr.assaderie.mobs.entity.ZombieOneEntity.getLivingSound(ZombieOneEntity.java:119)
+	at net.minecraft.entity.EntityLiving.playLivingSound(EntityLiving.java:555)
+	at net.minecraft.entity.EntityLiving.onEntityUpdate(EntityLiving.java:575)
+	at net.minecraft.entity.Entity.onUpdate(Entity.java:431)
+	at net.minecraft.entity.EntityLiving.onUpdate(EntityLiving.java:808)
+	at net.minecraft.entity.monster.EntityMob.onUpdate(EntityMob.java:45)
+	at net.minecraft.entity.monster.EntityZombie.onUpdate(EntityZombie.java:201)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:2293)
+	at net.minecraft.world.WorldServer.updateEntityWithOptionalForce(WorldServer.java:647)
+	at net.minecraft.world.World.updateEntity(World.java:2255)
+	at net.minecraft.world.World.updateEntities(World.java:2109)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:516)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:680)
+	... 4 more
+2024-10-22 13:56:35 [SEVERE] This crash report has been saved to: F:\Assaderie\Mods\AssaderieMobs\jars\.\crash-reports\crash-2024-10-22_13.56.35-server.txt
+2024-10-22 13:56:37 [INFO] Stopping server
+2024-10-22 13:56:37 [INFO] Saving players
+2024-10-22 13:56:37 [INFO] Saving worlds
+2024-10-22 13:56:37 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-22 13:56:37 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-22 13:56:37 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-22 14:00:49 [INFO] Starting minecraft server version 1.4.7
+2024-10-22 14:00:51 [INFO] Loading properties
+2024-10-22 14:00:51 [INFO] Default game type: SURVIVAL
+2024-10-22 14:00:51 [INFO] Generating keypair
+2024-10-22 14:00:52 [INFO] Starting Minecraft server on *:25565
+2024-10-22 14:00:52 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-22 14:00:52 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-22 14:00:52 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-22 14:00:52 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-22 14:00:52 [INFO] Preparing level "mcpworld"
+2024-10-22 14:00:52 [INFO] Preparing start region for level 0
+2024-10-22 14:00:53 [INFO] Done (0,787s)! For help, type "help" or "?"
+2024-10-22 14:00:54 [INFO] Stopping server
+2024-10-22 14:00:54 [INFO] Saving players
+2024-10-22 14:00:54 [INFO] Saving worlds
+2024-10-22 14:00:54 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-22 14:00:54 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-22 14:00:54 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-22 14:48:58 [INFO] Starting minecraft server version 1.4.7
+2024-10-22 14:49:00 [INFO] Loading properties
+2024-10-22 14:49:00 [INFO] Default game type: SURVIVAL
+2024-10-22 14:49:00 [INFO] Generating keypair
+2024-10-22 14:49:01 [INFO] Starting Minecraft server on *:25565
+2024-10-22 14:49:01 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-22 14:49:01 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-22 14:49:01 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-22 14:49:01 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-22 14:49:02 [INFO] Preparing level "mcpworld"
+2024-10-22 14:49:02 [INFO] Preparing start region for level 0
+2024-10-22 14:49:02 [INFO] Done (0,917s)! For help, type "help" or "?"
+2024-10-22 14:49:05 [INFO] Stopping server
+2024-10-22 14:49:05 [INFO] Saving players
+2024-10-22 14:49:05 [INFO] Saving worlds
+2024-10-22 14:49:05 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-22 14:49:05 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-22 14:49:05 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-22 14:53:06 [INFO] Starting minecraft server version 1.4.7
+2024-10-22 14:53:08 [INFO] Loading properties
+2024-10-22 14:53:08 [INFO] Default game type: SURVIVAL
+2024-10-22 14:53:08 [INFO] Generating keypair
+2024-10-22 14:53:09 [INFO] Starting Minecraft server on *:25565
+2024-10-22 14:53:09 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-22 14:53:09 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-22 14:53:09 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-22 14:53:09 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-22 14:53:09 [INFO] Preparing level "mcpworld"
+2024-10-22 14:53:09 [INFO] Preparing start region for level 0
+2024-10-22 14:53:10 [INFO] Done (1,071s)! For help, type "help" or "?"
+2024-10-22 14:53:20 [INFO] User Player508 connecting with mods [assaderieMobs]
+2024-10-22 14:53:20 [INFO] Player508[/127.0.0.1:50802] logged in with entity id 325 at (-2.5, 65.62000000476837, 201.5)
+2024-10-22 14:53:24 [INFO] Player508 lost connection: disconnect.endOfStream
+2024-10-22 14:55:33 [INFO] Stopping server
+2024-10-22 14:55:33 [INFO] Saving players
+2024-10-22 14:55:33 [INFO] Saving worlds
+2024-10-22 14:55:33 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-22 14:55:33 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-22 14:55:33 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-24 03:09:21 [INFO] Starting minecraft server version 1.4.7
+2024-10-24 03:09:23 [SEVERE] Encountered an unexpected exception LoaderException
+cpw.mods.fml.common.LoaderException: java.lang.NoClassDefFoundError: net/minecraft/client/audio/SoundManager
+	at cpw.mods.fml.common.LoadController.transition(LoadController.java:130)
+	at cpw.mods.fml.common.Loader.loadMods(Loader.java:506)
+	at cpw.mods.fml.server.FMLServerHandler.beginServerLoading(FMLServerHandler.java:86)
+	at cpw.mods.fml.common.FMLCommonHandler.onServerStart(FMLCommonHandler.java:351)
+	at net.minecraft.server.dedicated.DedicatedServer.startServer(DedicatedServer.java:64)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:458)
+	at net.minecraft.server.ThreadMinecraftServer.run(ThreadMinecraftServer.java:16)
+Caused by: java.lang.NoClassDefFoundError: net/minecraft/client/audio/SoundManager
+	at java.lang.Class.getDeclaredConstructors0(Native Method)
+	at java.lang.Class.privateGetDeclaredConstructors(Class.java:2398)
+	at java.lang.Class.getConstructor0(Class.java:2708)
+	at java.lang.Class.getConstructor(Class.java:1659)
+	at net.minecraftforge.event.EventBus.register(EventBus.java:69)
+	at net.minecraftforge.event.EventBus.register(EventBus.java:53)
+	at fr.assaderie.mobs.AssaderieMobs.preLoad(AssaderieMobs.java:44)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at cpw.mods.fml.common.FMLModContainer.handleModStateEvent(FMLModContainer.java:487)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.common.eventbus.EventHandler.handleEvent(EventHandler.java:69)
+	at com.google.common.eventbus.SynchronizedEventHandler.handleEvent(SynchronizedEventHandler.java:45)
+	at com.google.common.eventbus.EventBus.dispatch(EventBus.java:317)
+	at com.google.common.eventbus.EventBus.dispatchQueuedEvents(EventBus.java:300)
+	at com.google.common.eventbus.EventBus.post(EventBus.java:268)
+	at cpw.mods.fml.common.LoadController.propogateStateMessage(LoadController.java:153)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at com.google.common.eventbus.EventHandler.handleEvent(EventHandler.java:69)
+	at com.google.common.eventbus.SynchronizedEventHandler.handleEvent(SynchronizedEventHandler.java:45)
+	at com.google.common.eventbus.EventBus.dispatch(EventBus.java:317)
+	at com.google.common.eventbus.EventBus.dispatchQueuedEvents(EventBus.java:300)
+	at com.google.common.eventbus.EventBus.post(EventBus.java:268)
+	at cpw.mods.fml.common.LoadController.distributeStateMessage(LoadController.java:86)
+	at cpw.mods.fml.common.Loader.loadMods(Loader.java:505)
+	... 5 more
+Caused by: java.lang.ClassNotFoundException: net.minecraft.client.audio.SoundManager
+	at cpw.mods.fml.relauncher.RelaunchClassLoader.findClass(RelaunchClassLoader.java:185)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:247)
+	... 38 more
+Caused by: java.lang.RuntimeException: Attempted to load class net/minecraft/client/audio/SoundManager for invalid side SERVER
+	at cpw.mods.fml.common.asm.transformers.SideTransformer.transform(SideTransformer.java:38)
+	at cpw.mods.fml.relauncher.RelaunchClassLoader.runTransformers(RelaunchClassLoader.java:228)
+	at cpw.mods.fml.relauncher.RelaunchClassLoader.findClass(RelaunchClassLoader.java:173)
+	... 40 more
+2024-10-24 03:09:23 [SEVERE] This crash report has been saved to: F:\Assaderie\Mods\AssaderieMobs\jars\.\crash-reports\crash-2024-10-24_03.09.23-server.txt
+2024-10-24 03:09:25 [INFO] Stopping server
+2024-10-24 03:09:25 [INFO] Saving worlds
+2024-10-24 12:36:50 [INFO] Starting minecraft server version 1.4.7
+2024-10-24 12:36:51 [INFO] Loading properties
+2024-10-24 12:36:51 [INFO] Default game type: SURVIVAL
+2024-10-24 12:36:51 [INFO] Generating keypair
+2024-10-24 12:36:52 [INFO] Starting Minecraft server on *:25565
+2024-10-24 12:36:52 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-24 12:36:52 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-24 12:36:52 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-24 12:36:52 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-24 12:36:52 [INFO] Preparing level "mcpworld"
+2024-10-24 12:36:52 [INFO] Preparing start region for level 0
+2024-10-24 12:36:53 [INFO] Done (0,879s)! For help, type "help" or "?"
+2024-10-24 12:37:06 [INFO] User Player729 connecting with mods [assaderieMobs]
+2024-10-24 12:37:07 [INFO] Player729[/127.0.0.1:60730] logged in with entity id 319 at (-2.5, 65.62000000476837, 201.5)
+2024-10-24 12:37:21 [INFO] Opped player729
+2024-10-24 12:37:23 [INFO] Player729 was slain by Zombie Crawler
+2024-10-24 12:37:30 [INFO] [Player729: Set own game mode to Creative Mode]
+2024-10-24 12:38:10 [INFO] Player729 lost connection: disconnect.quitting
+2024-10-24 12:42:01 [INFO] Stopping server
+2024-10-24 12:42:01 [INFO] Saving players
+2024-10-24 12:42:01 [INFO] Saving worlds
+2024-10-24 12:42:01 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-24 12:42:01 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-24 12:42:01 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-25 03:07:28 [INFO] Starting minecraft server version 1.4.7
+2024-10-25 03:07:29 [INFO] Loading properties
+2024-10-25 03:07:29 [INFO] Default game type: SURVIVAL
+2024-10-25 03:07:30 [INFO] Generating keypair
+2024-10-25 03:07:30 [INFO] Starting Minecraft server on *:25565
+2024-10-25 03:07:30 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-25 03:07:30 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-25 03:07:30 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-25 03:07:30 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-25 03:07:30 [INFO] Preparing level "mcpworld"
+2024-10-25 03:07:31 [INFO] Preparing start region for level 0
+2024-10-25 03:07:31 [INFO] Done (1,026s)! For help, type "help" or "?"
+2024-10-25 03:08:24 [INFO] User Player870 connecting with mods [assaderieMobs]
+2024-10-25 03:08:24 [INFO] Player870[/127.0.0.1:64726] logged in with entity id 311 at (-2.5, 65.62000000476837, 201.5)
+2024-10-25 03:08:43 [INFO] Player870 lost connection: disconnect.genericReason
+2024-10-25 03:10:43 [INFO] Starting minecraft server version 1.4.7
+2024-10-25 03:10:44 [INFO] Loading properties
+2024-10-25 03:10:44 [INFO] Default game type: SURVIVAL
+2024-10-25 03:10:44 [INFO] Generating keypair
+2024-10-25 03:10:45 [INFO] Starting Minecraft server on *:25565
+2024-10-25 03:10:45 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-25 03:10:45 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-25 03:10:45 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-25 03:10:45 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-25 03:10:45 [INFO] Preparing level "mcpworld"
+2024-10-25 03:10:45 [INFO] Preparing start region for level 0
+2024-10-25 03:10:46 [INFO] Done (0,734s)! For help, type "help" or "?"
+2024-10-25 03:10:48 [INFO] User username=nokane connecting with mods [assaderieMobs]
+2024-10-25 03:10:48 [INFO] username=nokane[/127.0.0.1:64824] logged in with entity id 313 at (-2.5, 65.62000000476837, 201.5)
+2024-10-25 03:10:56 [INFO] Opped nokane
+2024-10-25 03:11:38 [INFO] Opped nokane
+2024-10-25 03:11:49 [INFO] username=nokane lost connection: disconnect.quitting
+2024-10-25 03:12:08 [INFO] /127.0.0.1:64874 lost connection
+2024-10-25 03:12:12 [INFO] /127.0.0.1:64878 lost connection
+2024-10-25 03:12:15 [INFO] /127.0.0.1:64881 lost connection
+2024-10-25 03:12:18 [INFO] Stopping server
+2024-10-25 03:12:18 [INFO] Saving players
+2024-10-25 03:12:18 [INFO] Saving worlds
+2024-10-25 03:12:18 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-25 03:12:18 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-25 03:12:18 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-25 03:12:22 [INFO] Starting minecraft server version 1.4.7
+2024-10-25 03:12:24 [INFO] Loading properties
+2024-10-25 03:12:24 [INFO] Default game type: SURVIVAL
+2024-10-25 03:12:24 [INFO] Generating keypair
+2024-10-25 03:12:25 [INFO] Starting Minecraft server on *:25565
+2024-10-25 03:12:25 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-25 03:12:25 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-25 03:12:25 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-25 03:12:25 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-25 03:12:25 [INFO] Preparing level "mcpworld"
+2024-10-25 03:12:25 [INFO] Preparing start region for level 0
+2024-10-25 03:12:26 [INFO] Done (0,833s)! For help, type "help" or "?"
+2024-10-25 03:12:28 [INFO] /127.0.0.1:64891 lost connection
+2024-10-25 03:13:00 [INFO] User -username=nokane connecting with mods [assaderieMobs]
+2024-10-25 03:13:00 [INFO] -username=nokane[/127.0.0.1:64924] logged in with entity id 313 at (-2.5, 65.62000000476837, 201.5)
+2024-10-25 03:13:12 [INFO] -username=nokane lost connection: disconnect.quitting
+2024-10-25 03:13:43 [INFO] User --user=nokane connecting with mods [assaderieMobs]
+2024-10-25 03:13:43 [INFO] --user=nokane[/127.0.0.1:64952] logged in with entity id 351 at (-1.5, 65.62000000476837, 187.5)
+2024-10-25 03:13:47 [INFO] --user=nokane lost connection: disconnect.quitting
+2024-10-25 03:14:07 [INFO] User -user=nokane connecting with mods [assaderieMobs]
+2024-10-25 03:14:07 [INFO] -user=nokane[/127.0.0.1:64967] logged in with entity id 400 at (6.5, 65.62000000476837, 191.5)
+2024-10-25 03:14:10 [INFO] -user=nokane lost connection: disconnect.quitting
+2024-10-25 03:16:34 [INFO] User user=nokane connecting with mods [assaderieMobs]
+2024-10-25 03:16:34 [INFO] user=nokane[/127.0.0.1:65053] logged in with entity id 466 at (-10.5, 76.62000000476837, 193.5)
+2024-10-25 03:16:38 [INFO] user=nokane lost connection: disconnect.quitting
+2024-10-25 03:19:05 [INFO] User Nokane connecting with mods [assaderieMobs]
+2024-10-25 03:19:05 [INFO] Nokane[/127.0.0.1:65153] logged in with entity id 473 at (-5.5, 69.62000000476837, 189.5)
+2024-10-25 03:19:08 [INFO] [Nokane: Set own game mode to Creative Mode]
+2024-10-25 03:19:36 [INFO] [Nokane: Set the time to 12500]
+2024-10-25 03:19:45 [INFO] [Nokane: Set game difficulty to Peaceful]
+2024-10-25 03:19:51 [WARNING] Can't keep up! Did the system time change, or is the server overloaded?
+2024-10-25 03:19:58 [INFO] [Nokane: Set game difficulty to Hard]
+2024-10-25 03:20:02 [INFO] [Nokane: Set own game mode to Survival Mode]
+2024-10-25 03:20:08 [INFO] Nokane was slain by Zombie One
+2024-10-25 03:20:15 [INFO] Nokane was slain by Zombie One
+2024-10-25 03:20:22 [INFO] Nokane was slain by Zombie One
+2024-10-25 03:20:29 [INFO] Nokane was slain by Zombie One
+2024-10-25 03:20:34 [INFO] Nokane lost connection: disconnect.quitting
+2024-10-25 03:27:32 [INFO] Stopping server
+2024-10-25 03:27:32 [INFO] Saving players
+2024-10-25 03:27:32 [INFO] Saving worlds
+2024-10-25 03:27:32 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-25 03:27:32 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-25 03:27:32 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-26 02:14:02 [INFO] Starting minecraft server version 1.4.7
+2024-10-26 02:14:04 [INFO] Loading properties
+2024-10-26 02:14:04 [INFO] Default game type: SURVIVAL
+2024-10-26 02:14:04 [INFO] Generating keypair
+2024-10-26 02:14:04 [INFO] Starting Minecraft server on *:25565
+2024-10-26 02:14:04 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-26 02:14:04 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-26 02:14:04 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-26 02:14:04 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-26 02:14:05 [INFO] Preparing level "mcpworld"
+2024-10-26 02:14:05 [INFO] Preparing start region for level 0
+2024-10-26 02:14:05 [INFO] Done (0,839s)! For help, type "help" or "?"
+2024-10-26 02:14:32 [INFO] Starting minecraft server version 1.4.7
+2024-10-26 02:14:33 [INFO] Loading properties
+2024-10-26 02:14:33 [INFO] Default game type: SURVIVAL
+2024-10-26 02:14:33 [INFO] Generating keypair
+2024-10-26 02:14:34 [INFO] Starting Minecraft server on *:25565
+2024-10-26 02:14:34 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-26 02:14:34 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-26 02:14:34 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-26 02:14:34 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-26 02:14:34 [INFO] Preparing level "mcpworld"
+2024-10-26 02:14:34 [INFO] Preparing start region for level 0
+2024-10-26 02:14:35 [INFO] Done (0,989s)! For help, type "help" or "?"
+2024-10-26 02:15:04 [INFO] User Nokane connecting with mods [assaderieMobs]
+2024-10-26 02:15:04 [INFO] Nokane[/127.0.0.1:49762] logged in with entity id 329 at (0.5, 64.0, 209.5)
+2024-10-26 02:15:17 [INFO] [Nokane: Set own game mode to Creative Mode]
+2024-10-26 02:16:59 [INFO] Nokane lost connection: disconnect.quitting
+2024-10-26 02:17:02 [INFO] Stopping server
+2024-10-26 02:17:02 [INFO] Saving players
+2024-10-26 02:17:02 [INFO] Saving worlds
+2024-10-26 02:17:02 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-26 02:17:02 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-26 02:17:02 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-26 02:17:42 [INFO] Starting minecraft server version 1.4.7
+2024-10-26 02:17:43 [INFO] Loading properties
+2024-10-26 02:17:43 [INFO] Default game type: SURVIVAL
+2024-10-26 02:17:43 [INFO] Generating keypair
+2024-10-26 02:17:44 [INFO] Starting Minecraft server on *:25565
+2024-10-26 02:17:44 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-26 02:17:44 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-26 02:17:44 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-26 02:17:44 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-26 02:17:44 [INFO] Preparing level "mcpworld"
+2024-10-26 02:17:45 [INFO] Preparing start region for level 0
+2024-10-26 02:17:45 [INFO] Done (1,138s)! For help, type "help" or "?"
+2024-10-26 02:18:09 [INFO] User Nokane connecting with mods [assaderieMobs]
+2024-10-26 02:18:09 [INFO] Nokane[/127.0.0.1:49871] logged in with entity id 346 at (1.2715665560904048, 64.5625, 210.04409748914446)
+2024-10-26 02:18:22 [INFO] Nokane lost connection: disconnect.genericReason
+2024-10-26 02:18:25 [INFO] Stopping server
+2024-10-26 02:18:25 [INFO] Saving players
+2024-10-26 02:18:25 [INFO] Saving worlds
+2024-10-26 02:18:25 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-26 02:18:25 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-26 02:18:25 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-26 02:19:49 [INFO] Starting minecraft server version 1.4.7
+2024-10-26 02:19:51 [INFO] Loading properties
+2024-10-26 02:19:51 [INFO] Default game type: SURVIVAL
+2024-10-26 02:19:51 [INFO] Generating keypair
+2024-10-26 02:19:52 [INFO] Starting Minecraft server on *:25565
+2024-10-26 02:19:52 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-26 02:19:52 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-26 02:19:52 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-26 02:19:52 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-26 02:19:52 [INFO] Preparing level "mcpworld"
+2024-10-26 02:19:52 [INFO] Preparing start region for level 0
+2024-10-26 02:19:53 [INFO] Done (0,889s)! For help, type "help" or "?"
+2024-10-26 02:20:25 [INFO] Stopping server
+2024-10-26 02:20:25 [INFO] Saving players
+2024-10-26 02:20:25 [INFO] Saving worlds
+2024-10-26 02:20:25 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-26 02:20:25 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-26 02:20:25 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-26 02:20:29 [INFO] Starting minecraft server version 1.4.7
+2024-10-26 02:20:30 [INFO] Loading properties
+2024-10-26 02:20:30 [INFO] Default game type: SURVIVAL
+2024-10-26 02:20:30 [INFO] Generating keypair
+2024-10-26 02:20:31 [INFO] Starting Minecraft server on *:25565
+2024-10-26 02:20:31 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-26 02:20:31 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-26 02:20:31 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-26 02:20:31 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-26 02:20:31 [INFO] Preparing level "mcpworld"
+2024-10-26 02:20:31 [INFO] Preparing start region for level 0
+2024-10-26 02:20:32 [INFO] Done (0,794s)! For help, type "help" or "?"
+2024-10-26 02:20:44 [INFO] Stopping server
+2024-10-26 02:20:44 [INFO] Saving players
+2024-10-26 02:20:44 [INFO] Saving worlds
+2024-10-26 02:20:44 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-26 02:20:44 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-26 02:20:44 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-26 02:22:08 [INFO] Starting minecraft server version 1.4.7
+2024-10-26 02:22:09 [INFO] Loading properties
+2024-10-26 02:22:09 [INFO] Default game type: SURVIVAL
+2024-10-26 02:22:09 [INFO] Generating keypair
+2024-10-26 02:22:10 [INFO] Starting Minecraft server on *:25565
+2024-10-26 02:22:10 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-26 02:22:10 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-26 02:22:10 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-26 02:22:10 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-26 02:22:10 [INFO] Preparing level "mcpworld"
+2024-10-26 02:22:11 [INFO] Preparing start region for level 0
+2024-10-26 02:22:11 [INFO] Done (0,786s)! For help, type "help" or "?"
+2024-10-26 02:22:17 [INFO] Stopping server
+2024-10-26 02:22:17 [INFO] Saving players
+2024-10-26 02:22:17 [INFO] Saving worlds
+2024-10-26 02:22:17 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-26 02:22:17 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-26 02:22:17 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-26 02:22:32 [INFO] Starting minecraft server version 1.4.7
+2024-10-26 02:22:33 [INFO] Loading properties
+2024-10-26 02:22:33 [INFO] Default game type: SURVIVAL
+2024-10-26 02:22:33 [INFO] Generating keypair
+2024-10-26 02:22:34 [INFO] Starting Minecraft server on *:25565
+2024-10-26 02:22:34 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-26 02:22:34 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-26 02:22:34 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-26 02:22:34 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-26 02:22:34 [INFO] Preparing level "mcpworld"
+2024-10-26 02:22:35 [INFO] Preparing start region for level 0
+2024-10-26 02:22:35 [INFO] Done (0,965s)! For help, type "help" or "?"
+2024-10-26 02:22:40 [INFO] Stopping server
+2024-10-26 02:22:40 [INFO] Saving players
+2024-10-26 02:22:40 [INFO] Saving worlds
+2024-10-26 02:22:40 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-26 02:22:40 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-26 02:22:40 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-26 02:25:56 [INFO] Starting minecraft server version 1.4.7
+2024-10-26 02:25:58 [INFO] Loading properties
+2024-10-26 02:25:58 [INFO] Default game type: SURVIVAL
+2024-10-26 02:25:58 [INFO] Generating keypair
+2024-10-26 02:25:59 [INFO] Starting Minecraft server on *:25565
+2024-10-26 02:25:59 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-26 02:25:59 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-26 02:25:59 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-26 02:25:59 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-26 02:25:59 [INFO] Preparing level "mcpworld"
+2024-10-26 02:25:59 [INFO] Preparing start region for level 0
+2024-10-26 02:26:00 [INFO] Done (0,949s)! For help, type "help" or "?"
+2024-10-26 02:26:04 [INFO] Stopping server
+2024-10-26 02:26:04 [INFO] Saving players
+2024-10-26 02:26:04 [INFO] Saving worlds
+2024-10-26 02:26:04 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-26 02:26:04 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-26 02:26:04 [INFO] Saving chunks for level 'mcpworld'/The End
+2024-10-26 02:39:37 [INFO] Starting minecraft server version 1.4.7
+2024-10-26 02:39:39 [INFO] Loading properties
+2024-10-26 02:39:39 [INFO] Default game type: SURVIVAL
+2024-10-26 02:39:39 [INFO] Generating keypair
+2024-10-26 02:39:39 [INFO] Starting Minecraft server on *:25565
+2024-10-26 02:39:39 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-26 02:39:39 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-26 02:39:39 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-26 02:39:39 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-26 02:39:40 [INFO] Preparing level "mcpworld"
+2024-10-26 02:39:40 [INFO] Preparing start region for level 0
+2024-10-26 02:39:40 [INFO] Done (0,885s)! For help, type "help" or "?"
+2024-10-27 14:49:55 [INFO] Starting minecraft server version 1.4.7
+2024-10-27 14:49:56 [INFO] Loading properties
+2024-10-27 14:49:56 [INFO] Default game type: SURVIVAL
+2024-10-27 14:49:56 [INFO] Generating keypair
+2024-10-27 14:49:57 [INFO] Starting Minecraft server on *:25565
+2024-10-27 14:49:57 [WARNING] **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+2024-10-27 14:49:57 [WARNING] The server will make no attempt to authenticate usernames. Beware.
+2024-10-27 14:49:57 [WARNING] While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+2024-10-27 14:49:57 [WARNING] To change this, set "online-mode" to "true" in the server.properties file.
+2024-10-27 14:49:57 [INFO] Preparing level "mcpworld"
+2024-10-27 14:49:58 [INFO] Preparing start region for level 0
+2024-10-27 14:49:58 [INFO] Done (0,778s)! For help, type "help" or "?"
+2024-10-27 14:50:15 [INFO] Stopping server
+2024-10-27 14:50:15 [INFO] Saving players
+2024-10-27 14:50:15 [INFO] Saving worlds
+2024-10-27 14:50:15 [INFO] Saving chunks for level 'mcpworld'/Overworld
+2024-10-27 14:50:15 [INFO] Saving chunks for level 'mcpworld'/Nether
+2024-10-27 14:50:15 [INFO] Saving chunks for level 'mcpworld'/The End

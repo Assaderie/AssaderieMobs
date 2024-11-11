@@ -1,0 +1,207 @@
+package fr.assaderie.mobs.models;
+
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
+
+public class CustomZombieChargeurModel extends ModelBase {
+
+
+    // Déclaration des parties du corps du modèle loup-garou
+    private ModelRenderer head;
+    private ModelRenderer nose;
+    private ModelRenderer snout;
+    private ModelRenderer upperTeeth;
+    private ModelRenderer lowerTeeth;
+    private ModelRenderer mouth;
+    private ModelRenderer leftEar;
+    private ModelRenderer rightEar;
+    private ModelRenderer neck;
+    private ModelRenderer neckSegment;
+    private ModelRenderer leftSideburn;
+    private ModelRenderer rightSideburn;
+    private ModelRenderer chest;
+    private ModelRenderer abdomen;
+    private ModelRenderer tailSegmentA;
+    private ModelRenderer tailSegmentB;
+    private ModelRenderer tailSegmentC;
+    private ModelRenderer tailSegmentD;
+    private ModelRenderer rightUpperLeg;
+    private ModelRenderer rightFoot;
+    private ModelRenderer rightMidLeg;
+    private ModelRenderer rightLowerLeg;
+    private ModelRenderer leftUpperLeg;
+    private ModelRenderer leftFoot;
+    private ModelRenderer leftMidLeg;
+    private ModelRenderer leftLowerLeg;
+    private ModelRenderer rightUpperArm;
+    private ModelRenderer rightMidArm;
+    private ModelRenderer rightHand;
+    private ModelRenderer leftUpperArm;
+    private ModelRenderer leftMidArm;
+    private ModelRenderer leftHand;
+    private ModelRenderer[] rightFingers = new ModelRenderer[5];
+    private ModelRenderer[] leftFingers = new ModelRenderer[5];
+
+    // Posture
+    public boolean hunched;
+
+    // Constructeur
+    public CustomZombieChargeurModel() {
+        this.textureWidth = 64;
+        this.textureHeight = 128;
+
+        // Initialisation de chaque partie du modèle
+        head = new ModelRenderer(this, 0, 0);
+        head.addBox(-4.0F, -3.0F, -6.0F, 8, 8, 6);
+        head.setRotationPoint(0.0F, -8.0F, -6.0F);
+
+        nose = new ModelRenderer(this, 44, 33);
+        nose.addBox(-1.5F, -1.7F, -12.3F, 3, 2, 7);
+        nose.setRotationPoint(0.0F, -8.0F, -6.0F);
+        setRotation(nose, 0.2792527F, 0.0F, 0.0F);
+
+        snout = new ModelRenderer(this, 0, 25);
+        snout.addBox(-2.0F, 2.0F, -12.0F, 4, 2, 6);
+        snout.setRotationPoint(0.0F, -8.0F, -6.0F);
+
+        upperTeeth = new ModelRenderer(this, 46, 18);
+        upperTeeth.addBox(-2.0F, 4.01F, -12.0F, 4, 2, 5);
+        upperTeeth.setRotationPoint(0.0F, -8.0F, -6.0F);
+
+        lowerTeeth = new ModelRenderer(this, 20, 109);
+        lowerTeeth.addBox(-1.5F, -12.5F, 2.01F, 3, 5, 2);
+        lowerTeeth.setRotationPoint(0.0F, -8.0F, -6.0F);
+        setRotation(lowerTeeth, 2.530727F, 0.0F, 0.0F);
+
+        mouth = new ModelRenderer(this, 42, 69);
+        mouth.addBox(-1.5F, -12.5F, 0.0F, 3, 9, 2);
+        mouth.setRotationPoint(0.0F, -8.0F, -6.0F);
+        setRotation(mouth, 2.530727F, 0.0F, 0.0F);
+
+        leftEar = new ModelRenderer(this, 13, 14);
+        leftEar.addBox(0.5F, -7.5F, -1.0F, 3, 5, 1);
+        leftEar.setRotationPoint(0.0F, -8.0F, -6.0F);
+        setRotation(leftEar, 0.0F, 0.0F, 0.1745329F);
+
+        rightEar = new ModelRenderer(this, 22, 0);
+        rightEar.addBox(-3.5F, -7.5F, -1.0F, 3, 5, 1);
+        rightEar.setRotationPoint(0.0F, -8.0F, -6.0F);
+        setRotation(rightEar, 0.0F, 0.0F, -0.1745329F);
+
+        neck = new ModelRenderer(this, 28, 0);
+        neck.addBox(-3.5F, -3.0F, -7.0F, 7, 8, 7);
+        neck.setRotationPoint(0.0F, -5.0F, -2.0F);
+        setRotation(neck, -0.6025001F, 0.0F, 0.0F);
+
+        neckSegment = new ModelRenderer(this, 0, 14);
+        neckSegment.addBox(-1.5F, -2.0F, -5.0F, 3, 4, 7);
+        neckSegment.setRotationPoint(0.0F, -1.0F, -6.0F);
+        setRotation(neckSegment, -0.4537856F, 0.0F, 0.0F);
+
+        leftSideburn = new ModelRenderer(this, 28, 33);
+        leftSideburn.addBox(3.0F, 0.0F, -2.0F, 2, 6, 6);
+        leftSideburn.setRotationPoint(0.0F, -8.0F, -6.0F);
+        setRotation(leftSideburn, -0.2094395F, 0.418879F, -0.0872665F);
+
+        rightSideburn = new ModelRenderer(this, 28, 45);
+        rightSideburn.addBox(-5.0F, 0.0F, -2.0F, 2, 6, 6);
+        rightSideburn.setRotationPoint(0.0F, -8.0F, -6.0F);
+        setRotation(rightSideburn, -0.2094395F, -0.418879F, 0.0872665F);
+
+        chest = new ModelRenderer(this, 20, 15);
+        chest.addBox(-4.0F, 0.0F, -7.0F, 8, 8, 10);
+        chest.setRotationPoint(0.0F, -6.0F, -2.5F);
+        setRotation(chest, 0.641331F, 0.0F, 0.0F);
+
+        abdomen = new ModelRenderer(this, 0, 40);
+        abdomen.addBox(-3.0F, -8.0F, -8.0F, 6, 14, 8);
+        abdomen.setRotationPoint(0.0F, 4.5F, 5.0F);
+        setRotation(abdomen, 0.2695449F, 0.0F, 0.0F);
+
+        tailSegmentA = new ModelRenderer(this, 52, 42);
+        tailSegmentA.addBox(-1.5F, -1.0F, -2.0F, 3, 4, 3);
+        tailSegmentA.setRotationPoint(0.0F, 9.5F, 6.0F);
+        setRotation(tailSegmentA, 1.064651F, 0.0F, 0.0F);
+
+        tailSegmentB = new ModelRenderer(this, 48, 49);
+        tailSegmentB.addBox(-2.0F, 2.0F, -2.0F, 4, 6, 4);
+        tailSegmentB.setRotationPoint(0.0F, 9.5F, 6.0F);
+        setRotation(tailSegmentB, 0.7504916F, 0.0F, 0.0F);
+
+        tailSegmentC = new ModelRenderer(this, 48, 59);
+        tailSegmentC.addBox(-2.0F, 6.8F, -4.6F, 4, 6, 4);
+        tailSegmentC.setRotationPoint(0.0F, 9.5F, 6.0F);
+        setRotation(tailSegmentC, 1.099557F, 0.0F, 0.0F);
+
+        tailSegmentD = new ModelRenderer(this, 52, 69);
+        tailSegmentD.addBox(-1.5F, 9.8F, -4.1F, 3, 5, 3);
+        tailSegmentD.setRotationPoint(0.0F, 9.5F, 6.0F);
+        setRotation(tailSegmentD, 1.099557F, 0.0F, 0.0F);
+
+        // Initialisation des doigts droit et gauche
+        for (int i = 0; i < 5; i++) {
+            rightFingers[i] = new ModelRenderer(this, 8 + i * 4, 120);
+            rightFingers[i].addBox(-3.0F + i, 15.5F, 1.0F, 1, 3, 1);
+            rightFingers[i].setRotationPoint(-4.0F, -4.0F, -2.0F);
+            
+            leftFingers[i] = new ModelRenderer(this, 8 + i * 4, 124);
+            leftFingers[i].addBox(5.0F - i, 15.5F, -1.5F, 1, 3, 1);
+            leftFingers[i].setRotationPoint(4.0F, -4.0F, -2.0F);
+        }
+    }
+
+    // Méthode pour définir la rotation d'une partie du modèle
+    private void setRotation(ModelRenderer model, float x, float y, float z) {
+        model.rotateAngleX = x;
+        model.rotateAngleY = y;
+        model.rotateAngleZ = z;
+    }
+
+    // Méthode de rendu pour chaque partie
+    public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+        setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entity);
+
+        head.render(scale);
+        nose.render(scale);
+        snout.render(scale);
+        upperTeeth.render(scale);
+        lowerTeeth.render(scale);
+        mouth.render(scale);
+        leftEar.render(scale);
+        rightEar.render(scale);
+        neck.render(scale);
+        neckSegment.render(scale);
+        leftSideburn.render(scale);
+        rightSideburn.render(scale);
+        chest.render(scale);
+        abdomen.render(scale);
+        tailSegmentA.render(scale);
+        tailSegmentB.render(scale);
+        tailSegmentC.render(scale);
+        tailSegmentD.render(scale);
+
+        for (ModelRenderer finger : rightFingers) {
+            finger.render(scale);
+        }
+        for (ModelRenderer finger : leftFingers) {
+            finger.render(scale);
+        }
+    }
+
+    // Méthode pour définir les angles de rotation
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
+        float radian = (float) Math.PI / 180F;
+        head.rotateAngleY = netHeadYaw * radian;
+        head.rotateAngleX = headPitch * radian;
+
+        if (hunched) {
+            neck.rotateAngleX = -10 * radian;
+            tailSegmentA.rotateAngleX = 1.5F;
+        } else {
+            neck.rotateAngleX = -34 * radian;
+            tailSegmentA.rotateAngleX = 1.0F;
+        }
+    }
+}

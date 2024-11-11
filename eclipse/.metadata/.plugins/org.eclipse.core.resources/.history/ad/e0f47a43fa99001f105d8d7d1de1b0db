@@ -1,0 +1,143 @@
+package fr.assaderie.mobs.events;
+
+import fr.assaderie.mobs.config.AllEntityConfig;
+import fr.assaderie.mobs.managers.ConfigZombieManager;
+import fr.assaderie.mobs.managers.ConfigZombieManager.ZombieConfig;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.DamageSource;
+import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+
+import java.lang.reflect.Field;
+
+public class ZombieConfigEventHandler {
+
+    // Réflexion pour accéder à moveSpeed
+    private static Field moveSpeedField;
+
+    static {
+        try {
+            moveSpeedField = EntityZombie.class.getSuperclass().getDeclaredField("moveSpeed");
+            moveSpeedField.setAccessible(true);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @ForgeSubscribe
+    public void onZombieUpdate(LivingUpdateEvent event) {
+        if (!(event.entity instanceof EntityZombie)) {
+            return;
+        }
+
+        EntityZombie zombie = (EntityZombie) event.entity;
+
+        // Vérifiez si on utilise la configuration unique ou globale
+        ZombieConfig config;
+        if (AllEntityConfig.enableZombieConfig) {
+            // Utilise la configuration spécifique pour ZombieVanilla
+            config = ConfigZombieManager.getZombieConfig("ZombieVanilla");
+        } else {
+            // Applique la configuration globale
+            config = new ZombieConfig(
+                AllEntityConfig.globalSpeed,
+                AllEntityConfig.globalHealth,
+                (int) AllEntityConfig.globalDamage,
+                AllEntityConfig.sunDamageEnabled,
+                AllEntityConfig.dropEnabled,
+                AllEntityConfig.dropItemId,
+                AllEntityConfig.animalDetectionRadius,
+                AllEntityConfig.delayNearAnimal,
+                AllEntityConfig.playerDetectionRadius,
+                AllEntityConfig.canSpawnInDay,
+                AllEntityConfig.torchSpawnRadius
+            );
+        }
+
+        applyConfig(zombie, config);
+    }
+
+    private void applyConfig(EntityZombie zombie, ZombieConfig config) {
+        // Applique la vitesse et la santé via la réflexion
+        try {
+            moveSpeedField.set(zombie, config.speed);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        zombie.setEntityHealth(config.health);
+
+        // Gère les dégâts dus au soleil
+        if (!config.sunDamageEnabled && zombie.isBurning()) {
+            zombie.extinguish();
+        } else if (config.sunDamageEnabled && zombie.worldObj.isDaytime() && !zombie.worldObj.isRemote) {
+            handleSunlightDamage(zombie);
+        }
+    }
+
+    private void handleSunlightDamage(EntityZombie zombie) {
+        if (zombie.worldObj.canBlockSeeTheSky((int) zombie.posX, (int) zombie.posY, (int) zombie.posZ) && zombie.getBrightness(1.0F) > 0.5F) {
+            zombie.setFire(8);
+        }
+    }
+
+    @ForgeSubscribe
+    public void onZombieAttack(LivingAttackEvent event) {
+        Entity attacker = event.source.getEntity();
+
+        if (!(attacker instanceof EntityZombie)) {
+            return;
+        }
+
+        EntityZombie zombie = (EntityZombie) attacker;
+
+        // Récupère la configuration pour déterminer les dégâts
+        int damage;
+        if (AllEntityConfig.enableZombieConfig) {
+            ZombieConfig config = ConfigZombieManager.getZombieConfig("ZombieVanilla");
+            damage = config != null ? config.damage : 5;
+        } else {
+            damage = (int) AllEntityConfig.globalDamage;
+        }
+
+        // Inflige les dégâts personnalisés et annule l'événement par défaut
+        event.entityLiving.attackEntityFrom(DamageSource.causeMobDamage(zombie), damage);
+        event.setCanceled(true);
+    }
+
+    @ForgeSubscribe
+    public void onZombieDeath(LivingDeathEvent event) {
+        if (!(event.entity instanceof EntityZombie)) {
+            return;
+        }
+
+        EntityZombie zombie = (EntityZombie) event.entity;
+        ZombieConfig config;
+
+        if (AllEntityConfig.enableZombieConfig) {
+            config = ConfigZombieManager.getZombieConfig("ZombieVanilla");
+        } else {
+            config = new ZombieConfig(
+                AllEntityConfig.globalSpeed,
+                AllEntityConfig.globalHealth,
+                (int) AllEntityConfig.globalDamage,
+                AllEntityConfig.sunDamageEnabled,
+                AllEntityConfig.dropEnabled,
+                AllEntityConfig.dropItemId,
+                AllEntityConfig.animalDetectionRadius,
+                AllEntityConfig.delayNearAnimal,
+                AllEntityConfig.playerDetectionRadius,
+                AllEntityConfig.canSpawnInDay,
+                AllEntityConfig.torchSpawnRadius
+            );
+        }
+
+        // Appliquer le drop configuré si activé
+        if (config.dropEnabled) {
+            zombie.entityDropItem(new net.minecraft.item.ItemStack(config.dropItemId, 1, 0), 0.0F);
+        }
+    }
+}

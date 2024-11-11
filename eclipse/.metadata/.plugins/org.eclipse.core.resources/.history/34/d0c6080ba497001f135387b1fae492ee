@@ -1,0 +1,56 @@
+package fr.assaderie.mobs.render;
+
+import org.lwjgl.opengl.GL11;
+
+import fr.assaderie.mobs.entity.ZombieWolfEntity;
+import fr.assaderie.mobs.models.CustomModelWolf;
+import fr.assaderie.mobs.utils.TexturesZombie;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.monster.EntityEnderman;
+
+public class RenderWolf extends RenderLiving {
+
+	private CustomModelWolf wolfModel;
+	
+    public RenderWolf() {
+        super(new CustomModelWolf(), 0.5F);
+        this.wolfModel = (CustomModelWolf) super.mainModel;
+        this.setRenderPassModel(this.wolfModel);    
+        }
+    
+    
+    protected int renderEyes(ZombieWolfEntity zombieWolfEntity, int par2, float par3) {
+    	if(par2 != 0) {
+    		return -1;
+    	} else {
+    		this.loadTexture(TexturesZombie.TEXTURES_ZOMBIE_WOLF_EYES);
+    		float var4 = 1.0F;
+    		GL11.glEnable(GL11.GL_BLEND);
+    		GL11.glDisable(GL11.GL_ALPHA_TEST);
+    		GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
+    		
+    		if(zombieWolfEntity.getHasActivePotion()) {
+    			GL11.glDepthMask(false);
+    		} else {
+    			GL11.glDepthMask(true);
+    		}
+    		
+    		char var5 = 61680;
+            int var6 = var5 % 65536;
+            int var7 = var5 / 65536;
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)var6 / 1.0F, (float)var7 / 1.0F);
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+            GL11.glEnable(GL11.GL_LIGHTING);
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, var4);
+            return 1;
+    	}
+    }
+    
+    protected int shouldRenderPass(EntityLiving par1EntityLiving, int par2, float par3) {
+        return this.renderEyes((ZombieWolfEntity)par1EntityLiving, par2, par3);
+    }
+}
+

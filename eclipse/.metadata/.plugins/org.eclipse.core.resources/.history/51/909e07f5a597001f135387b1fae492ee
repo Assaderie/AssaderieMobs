@@ -1,0 +1,67 @@
+package fr.assaderie.mobs.render;
+
+import org.lwjgl.opengl.GL11;
+import fr.assaderie.mobs.entity.ZombieWolfEntity;
+import fr.assaderie.mobs.models.CustomModelWolf;
+import fr.assaderie.mobs.utils.TexturesZombie;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+
+public class RenderWolf extends RenderLiving {
+
+    private CustomModelWolf wolfModel;
+
+    public RenderWolf() {
+        super(new CustomModelWolf(), 0.5F);
+        this.wolfModel = (CustomModelWolf) super.mainModel;
+        this.setRenderPassModel(this.wolfModel);
+    }
+
+    /**
+     * Méthode pour rendre les yeux lumineux du loup zombie.
+     */
+    protected int renderEyes(ZombieWolfEntity zombieWolfEntity, int pass, float partialTickTime) {
+        if (pass != 0) {
+            return -1;
+        } else {
+            this.loadTexture(TexturesZombie.TEXTURES_ZOMBIE_WOLF_EYES);
+            GL11.glEnable(GL11.GL_BLEND);
+            GL11.glDisable(GL11.GL_ALPHA_TEST);
+            GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
+            GL11.glDisable(GL11.GL_LIGHTING);
+
+            if (zombieWolfEntity.getHasActivePotion()) {
+                GL11.glDepthMask(false);
+            } else {
+                GL11.glDepthMask(true);
+            }
+
+            char luminosite = 61680;
+            int u = luminosite % 65536;
+            int v = luminosite / 65536;
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) u / 1.0F, (float) v / 1.0F);
+
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+
+            // Rend uniquement la partie des yeux
+            this.wolfModel.renderEyes(0.0625F);
+
+            GL11.glEnable(GL11.GL_LIGHTING);
+            return 1;
+        }
+    }
+
+    protected int shouldRenderPass(EntityLiving entity, int pass, float partialTickTime) {
+        return this.renderEyes((ZombieWolfEntity) entity, pass, partialTickTime);
+    }
+
+    public void doRender(Entity entity, double x, double y, double z, float entityYaw, float partialTicks) {
+        this.renderWolf((ZombieWolfEntity) entity, x, y, z, entityYaw, partialTicks);
+    }
+
+    public void renderWolf(ZombieWolfEntity zombieWolfEntity, double x, double y, double z, float entityYaw, float partialTicks) {
+        super.doRender(zombieWolfEntity, x, y, z, entityYaw, partialTicks);
+    }
+}

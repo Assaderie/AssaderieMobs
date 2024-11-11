@@ -1,0 +1,110 @@
+package fr.assaderie.mobs.events;
+
+import java.lang.reflect.Field;
+
+import fr.assaderie.mobs.config.AllEntityConfig;
+import fr.assaderie.mobs.managers.ConfigZombieManager;
+import fr.assaderie.mobs.managers.ConfigZombieManager.ZombieConfig;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.util.DamageSource;
+import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+
+public class ZombieConfigEventHandler {
+
+    // Reflection field to access the protected moveSpeed field
+    private static Field moveSpeedField;
+
+    static {
+        try {
+            // Locate the moveSpeed field in EntityLiving
+            moveSpeedField = EntityZombie.class.getSuperclass().getDeclaredField("moveSpeed");
+            moveSpeedField.setAccessible(true); // Make it accessible
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @ForgeSubscribe
+    public void onZombieUpdate(LivingUpdateEvent event) {
+        // Vérifier si l'entité est un zombie Vanilla
+        if (!(event.entity instanceof EntityZombie)) {
+            return;
+        }
+
+        EntityZombie zombie = (EntityZombie) event.entity;
+
+        // Appliquer la configuration spécifique ou globale en fonction du paramètre enableZombieConfig
+        if (AllEntityConfig.enableZombieConfig) {
+            // Récupérer la configuration spécifique pour ce type de zombie
+            ZombieConfig config = ConfigZombieManager.getZombieConfig("ZombieVanilla"); // Spécifiez le nom de configuration souhaité
+
+            if (config != null) {
+                // Appliquer la configuration spécifique
+                setZombieMoveSpeed(zombie, config.speed);
+                zombie.setEntityHealth(config.health);
+
+                // Autres configurations spécifiques
+                if (!config.sunDamageEnabled && zombie.isBurning()) {
+                    zombie.extinguish();
+                }
+            }
+        } else {
+            // Appliquer la configuration globale si enableZombieConfig est désactivé
+            setZombieMoveSpeed(zombie, AllEntityConfig.globalSpeed);
+            zombie.setEntityHealth(AllEntityConfig.globalHealth);
+
+            // Autres configurations globales
+            if (!AllEntityConfig.sunDamageEnabled && zombie.isBurning()) {
+                zombie.extinguish();
+            }
+        }
+    }
+
+    /**
+     * Sets the move speed of a zombie using reflection.
+     *
+     * @param zombie    The zombie whose speed will be set.
+     * @param moveSpeed The speed value to set.
+     */
+    private void setZombieMoveSpeed(EntityZombie zombie, float moveSpeed) {
+        try {
+            moveSpeedField.set(zombie, moveSpeed);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @ForgeSubscribe
+    public void onZombieAttack(LivingAttackEvent event) {
+        Entity attacker = event.source.getEntity();
+        
+        // Vérifier si l'attaquant est un zombie Vanilla
+        if (!(attacker instanceof EntityZombie)) {
+            return;
+        }
+
+        EntityZombie zombie = (EntityZombie) attacker;
+        
+        // Récupérer la cible de l'attaque
+        EntityLivingBase target = event.entityLiving;
+
+        int damage;
+        if (AllEntityConfig.enableZombieConfig) {
+            // Utiliser la configuration spécifique
+            ZombieConfig config = ConfigZombieManager.getZombieConfig("ZombieOne");
+            damage = config != null ? config.damage : 5; // Valeur par défaut si la config est manquante
+        } else {
+            // Utiliser la configuration globale
+            damage = (int) AllEntityConfig.globalDamage;
+        }
+
+        // Infliger les dégâts configurés
+        target.attackEntityFrom(DamageSource.causeMobDamage(zombie), damage);
+        
+        // Annuler l'événement par défaut pour éviter le double-dégât
+        event.setCanceled(true);
+    }
+}

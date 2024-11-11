@@ -1,0 +1,114 @@
+package fr.assaderie.mobs.events;
+
+import fr.assaderie.mobs.config.AllEntityConfig;
+import fr.assaderie.mobs.managers.ConfigZombieManager;
+import fr.assaderie.mobs.managers.ConfigZombieManager.ZombieConfig;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
+
+public class ZombieConfigEventHandler {
+
+    private ZombieConfig config;
+
+    // Map to store the last detection time for each zombie (used for delayNearAnimal)
+    private final Map<EntityZombie, Long> zombieLastAnimalDetection = new HashMap<>();
+
+    @ForgeSubscribe
+    public void onEntitySpawn(EntityJoinWorldEvent event) {
+        if (event.entity instanceof EntityZombie) {
+            EntityZombie zombie = (EntityZombie) event.entity;
+
+            if (!AllEntityConfig.enableZombieConfig) {
+                applyGlobalConfig(zombie);
+            } else {
+                config = ConfigZombieManager.getZombieConfig("ZombieVanilla");
+                if (config != null) {
+                    applySpecificConfig(zombie, config);
+                }
+            }
+        }
+    }
+
+    private void applyGlobalConfig(EntityZombie zombie) {
+        setZombieHealth(zombie, AllEntityConfig.globalHealth);
+        setZombieSpeed(zombie, AllEntityConfig.globalSpeed);
+        setZombieSunDamage(zombie, AllEntityConfig.sunDamageEnabled);
+    }
+
+    private void applySpecificConfig(EntityZombie zombie, ZombieConfig config) {
+        setZombieHealth(zombie, config.health);
+        setZombieSpeed(zombie, config.speed);
+        setZombieSunDamage(zombie, config.sunDamageEnabled);
+    }
+
+    private void setZombieHealth(EntityZombie zombie, int health) {
+        zombie.setEntityHealth(health);
+    }
+
+    private void setZombieSpeed(EntityZombie zombie, float speed) {
+        zombie.setMoveForward(speed);
+    }
+
+    private void setZombieSunDamage(EntityZombie zombie, boolean sunDamageEnabled) {
+        try {
+            Field isImmuneToFireField = net.minecraft.entity.Entity.class.getDeclaredField("isImmuneToFire");
+            isImmuneToFireField.setAccessible(true);
+            isImmuneToFireField.setBoolean(zombie, !sunDamageEnabled);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @ForgeSubscribe
+    public void onLivingUpdate(LivingUpdateEvent event) {
+        if (event.entity instanceof EntityZombie) {
+            EntityZombie zombie = (EntityZombie) event.entity;
+
+            // Retrieve animal detection radius and delay settings from global or specific config
+            int animalDetectionRadius = (config != null ? config.animalDetectionRadius : AllEntityConfig.animalDetectionRadius);
+            int delayNearAnimal = (config != null ? config.delayNearAnimal : AllEntityConfig.delayNearAnimal);
+
+            // Detect the closest animal within the specified radius
+            EntityAnimal closestAnimal = getClosestAnimalWithinRadius(zombie, animalDetectionRadius);
+            if (closestAnimal != null) {
+                long currentTime = System.currentTimeMillis();
+                long lastDetectionTime = zombieLastAnimalDetection.containsKey(zombie) ? zombieLastAnimalDetection.get(zombie) : 0L;
+
+                // Only set the animal as a target if enough time has passed since the last detection
+                if (currentTime - lastDetectionTime >= delayNearAnimal) {
+                    zombie.setAttackTarget(closestAnimal);
+                    zombieLastAnimalDetection.put(zombie, currentTime); // Update detection time
+                }
+            } else {
+                // No animal detected within range, clear the zombie's target
+                zombie.setAttackTarget(null);
+                zombieLastAnimalDetection.remove(zombie);
+            }
+        }
+    }
+
+    private EntityAnimal getClosestAnimalWithinRadius(EntityZombie zombie, int radius) {
+        EntityAnimal closestAnimal = null;
+        double closestDistance = Double.MAX_VALUE;
+
+        for (Object entity : zombie.worldObj.loadedEntityList) {
+            if (entity instanceof EntityAnimal) {
+                EntityAnimal animal = (EntityAnimal) entity;
+                double distance = zombie.getDistanceToEntity(animal);
+
+                if (distance <= radius && distance < closestDistance) {
+                    closestDistance = distance;
+                    closestAnimal = animal;
+                }
+            }
+        }
+        return closestAnimal;
+    }
+}

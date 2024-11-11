@@ -1,0 +1,106 @@
+---- Minecraft Crash Report ----
+// Don't do that.
+
+Time: 24/10/24 18:31
+Description: Ticking entity
+
+java.lang.NullPointerException
+	at net.minecraft.entity.DataWatcher.getWatchableObjectByte(DataWatcher.java:79)
+	at fr.assaderie.mobs.entity.ZombieWolfEntity.isTamed(ZombieWolfEntity.java:72)
+	at fr.assaderie.mobs.entity.ZombieWolfEntity.attackEntityAsMob(ZombieWolfEntity.java:76)
+	at net.minecraft.entity.ai.EntityAIAttackOnCollide.updateTask(EntityAIAttackOnCollide.java:119)
+	at net.minecraft.entity.ai.EntityAITasks.onUpdateTasks(EntityAITasks.java:120)
+	at net.minecraft.entity.EntityLiving.updateAITasks(EntityLiving.java:2057)
+	at net.minecraft.entity.EntityLiving.onLivingUpdate(EntityLiving.java:1782)
+	at net.minecraft.entity.monster.EntityMob.onLivingUpdate(EntityMob.java:37)
+	at net.minecraft.entity.monster.EntityZombie.onLivingUpdate(EntityZombie.java:182)
+	at net.minecraft.entity.EntityLiving.onUpdate(EntityLiving.java:843)
+	at net.minecraft.entity.monster.EntityMob.onUpdate(EntityMob.java:45)
+	at net.minecraft.entity.monster.EntityZombie.onUpdate(EntityZombie.java:201)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:2293)
+	at net.minecraft.world.WorldServer.updateEntityWithOptionalForce(WorldServer.java:647)
+	at net.minecraft.world.World.updateEntity(World.java:2255)
+	at net.minecraft.world.World.updateEntities(World.java:2109)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:516)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:680)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:599)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:123)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:497)
+	at net.minecraft.server.ThreadMinecraftServer.run(ThreadMinecraftServer.java:16)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at net.minecraft.entity.DataWatcher.getWatchableObjectByte(DataWatcher.java:79)
+	at fr.assaderie.mobs.entity.ZombieWolfEntity.isTamed(ZombieWolfEntity.java:72)
+	at fr.assaderie.mobs.entity.ZombieWolfEntity.attackEntityAsMob(ZombieWolfEntity.java:76)
+	at net.minecraft.entity.ai.EntityAIAttackOnCollide.updateTask(EntityAIAttackOnCollide.java:119)
+	at net.minecraft.entity.ai.EntityAITasks.onUpdateTasks(EntityAITasks.java:120)
+	at net.minecraft.entity.EntityLiving.updateAITasks(EntityLiving.java:2057)
+	at net.minecraft.entity.EntityLiving.onLivingUpdate(EntityLiving.java:1782)
+	at net.minecraft.entity.monster.EntityMob.onLivingUpdate(EntityMob.java:37)
+	at net.minecraft.entity.monster.EntityZombie.onLivingUpdate(EntityZombie.java:182)
+	at net.minecraft.entity.EntityLiving.onUpdate(EntityLiving.java:843)
+	at net.minecraft.entity.monster.EntityMob.onUpdate(EntityMob.java:45)
+	at net.minecraft.entity.monster.EntityZombie.onUpdate(EntityZombie.java:201)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:2293)
+	at net.minecraft.world.WorldServer.updateEntityWithOptionalForce(WorldServer.java:647)
+	at net.minecraft.world.World.updateEntity(World.java:2255)
+
+-- Entity being ticked --
+Details:
+	Entity Type: assaderieMobs.ZombieWolf (fr.assaderie.mobs.entity.ZombieWolfEntity)
+	Entity ID: 0
+	Name: Zombie Wolf
+	Exact location: -246,44, 1,00, 1395,94
+	Block location: World: (-247,1,1395), Chunk: (at 9,0,3 in -16,87; contains blocks -256,0,1392 to -241,255,1407), Region: (-1,2; contains chunks -32,64 to -1,95, blocks -512,0,1024 to -1,255,1535)
+	Momentum: 0,00, -0,08, 0,06
+Stacktrace:
+	at net.minecraft.world.World.updateEntities(World.java:2109)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:516)
+
+-- Affected level --
+Details:
+	Level name: New World
+	All players: 1 total; [EntityPlayerMP['Player966'/3, l='New World', x=-246,36, y=1,00, z=1397,12]]
+	Chunk stats: ServerChunkCache: 625 Drop: 0
+	Level seed: 2338850739992420543
+	Level generator: ID 01 - flat, ver 0. Features enabled: true
+	Level generator options: 2;7;1;village
+	Level spawn location: World: (-247,4,1374), Chunk: (at 9,0,14 in -16,85; contains blocks -256,0,1360 to -241,255,1375), Region: (-1,2; contains chunks -32,64 to -1,95, blocks -512,0,1024 to -1,255,1535)
+	Level time: 27876 game time, 14980 day time
+	Level dimension: 0
+	Level storage version: 0x04ABD - Anvil
+	Level weather: Rain time: 69510 (now: false), thunder time: 6788 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: true
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:680)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:599)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:123)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:497)
+	at net.minecraft.server.ThreadMinecraftServer.run(ThreadMinecraftServer.java:16)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.4.7
+	Operating System: Windows 8 (amd64) version 6.2
+	Java Version: 1.6.0_45, Sun Microsystems Inc.
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Sun Microsystems Inc.
+	Memory: 876050904 bytes (835 MB) / 1060372480 bytes (1011 MB) up to 1060372480 bytes (1011 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	AABB Pool Size: 223 (12488 bytes; 0 MB) allocated, 3 (168 bytes; 0 MB) used
+	Suspicious classes: FML and Forge are installed
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: MCP v7.26a FML v4.7.35.556 Minecraft Forge 6.6.2.534 4 mods loaded, 4 mods active
+	mcp [Minecraft Coder Pack] (minecraft.jar) Unloaded->Constructed->Pre-initialized->Initialized->Post-initialized->Available->Available->Available->Available
+	FML [Forge Mod Loader] (coremods) Unloaded->Constructed->Pre-initialized->Initialized->Post-initialized->Available->Available->Available->Available
+	Forge [Minecraft Forge] (coremods) Unloaded->Constructed->Pre-initialized->Initialized->Post-initialized->Available->Available->Available->Available
+	assaderieMobs [Assaderie Mobs] (bin) Unloaded->Constructed->Pre-initialized->Initialized->Post-initialized->Available->Available->Available->Available
+	Profiler Position: N/A (disabled)
+	Vec3 Pool Size: 26 (1456 bytes; 0 MB) allocated, 6 (336 bytes; 0 MB) used
+	Player Count: 1 / 8; [EntityPlayerMP['Player966'/3, l='New World', x=-246,36, y=1,00, z=1397,12]]
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'forge,fml'

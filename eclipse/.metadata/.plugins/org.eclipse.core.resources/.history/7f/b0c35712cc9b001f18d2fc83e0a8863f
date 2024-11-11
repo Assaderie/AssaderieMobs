@@ -1,0 +1,11 @@
+package fr.assaderie.mobs.render;
+
+import fr.assaderie.mobs.models.CustomCrawlerModel;
+import fr.assaderie.mobs.models.CustomZombieFatModel;
+
+public class RenderFatZombie {
+
+	public RenderFatZombie() {
+        super(new CustomZombieFatModel(), 0.5F);
+    }
+}

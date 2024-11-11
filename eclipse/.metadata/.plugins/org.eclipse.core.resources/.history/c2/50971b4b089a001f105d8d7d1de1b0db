@@ -1,0 +1,107 @@
+package fr.assaderie.mobs.events;
+
+import fr.assaderie.mobs.config.AllEntityConfig;
+import fr.assaderie.mobs.managers.ConfigZombieManager;
+import fr.assaderie.mobs.managers.ConfigZombieManager.ZombieConfig;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class ZombieConfigEventHandler {
+
+    private ZombieConfig config;
+
+    // Map to store the last detection time for each zombie (used for delayNearAnimal)
+    private final Map<EntityZombie, Long> zombieLastAnimalDetection = new HashMap<EntityZombie, Long>();
+
+    @ForgeSubscribe
+    public void onEntitySpawn(EntityJoinWorldEvent event) {
+        if (event.entity instanceof EntityZombie) {
+            EntityZombie zombie = (EntityZombie) event.entity;
+
+            if (!AllEntityConfig.enableZombieConfig) {
+                applyGlobalConfig(zombie);
+            } else {
+                config = ConfigZombieManager.getZombieConfig("ZombieVanilla");
+                if (config != null) {
+                    applySpecificConfig(zombie, config);
+                }
+            }
+
+            // If `canSpawnInDay` is false and it's daytime, despawn the zombie
+            if ((config != null && !config.canSpawnInDay) || (!AllEntityConfig.canSpawnInDay)) {
+                if (zombie.worldObj.isDaytime() && zombie.worldObj.canBlockSeeTheSky((int) zombie.posX, (int) zombie.posY, (int) zombie.posZ)) {
+                    zombie.setDead(); // Despawn the zombie during daytime
+                }
+            }
+        }
+    }
+
+    private void applyGlobalConfig(EntityZombie zombie) {
+        setZombieHealth(zombie, AllEntityConfig.globalHealth);
+        setZombieSpeed(zombie, AllEntityConfig.globalSpeed);
+    }
+
+    private void applySpecificConfig(EntityZombie zombie, ZombieConfig config) {
+        setZombieHealth(zombie, config.health);
+        setZombieSpeed(zombie, config.speed);
+    }
+
+    private void setZombieHealth(EntityZombie zombie, int health) {
+        zombie.setEntityHealth(health);
+    }
+
+    private void setZombieSpeed(EntityZombie zombie, float speed) {
+        zombie.setMoveForward(speed);
+    }
+
+    @ForgeSubscribe
+    public void onLivingUpdate(LivingUpdateEvent event) {
+        if (event.entity instanceof EntityZombie) {
+            EntityZombie zombie = (EntityZombie) event.entity;
+
+            // Check sun damage configuration and extinguish if necessary
+            boolean sunDamageEnabled = (config != null) ? config.sunDamageEnabled : AllEntityConfig.sunDamageEnabled;
+            if (!sunDamageEnabled && zombie.isBurning() && zombie.worldObj.isDaytime() &&
+                zombie.worldObj.canBlockSeeTheSky((int) zombie.posX, (int) zombie.posY, (int) zombie.posZ)) {
+                zombie.extinguish(); // Prevent burning in sunlight
+            }
+        }
+    }
+
+    @ForgeSubscribe
+    public void onZombieHurt(LivingHurtEvent event) {
+        if (event.source.getEntity() instanceof EntityZombie) {
+            EntityZombie zombie = (EntityZombie) event.source.getEntity();
+            if (config != null) {
+                // Modify the damage amount based on configuration
+                event.ammount = config.damage;
+            } else {
+                // Apply global damage configuration if specific config is not set
+                event.ammount = (int) AllEntityConfig.globalDamage;
+            }
+        }
+    }
+
+    @ForgeSubscribe
+    public void onZombieDeath(LivingDeathEvent event) {
+        if (event.entity instanceof EntityZombie) {
+            EntityZombie zombie = (EntityZombie) event.entity;
+            if (config != null && !config.dropEnabled) {
+                // Cancel drops if dropEnabled is false
+                event.entityLiving.captureDrops = true;
+                event.entityLiving.capturedDrops.clear();
+            } else if (config != null && config.dropItemId != 0) {
+                // Add a specific drop if configured
+                zombie.entityDropItem(new net.minecraft.item.ItemStack(config.dropItemId, 1, 0), 0.0F);
+            }
+        }
+    }
+}

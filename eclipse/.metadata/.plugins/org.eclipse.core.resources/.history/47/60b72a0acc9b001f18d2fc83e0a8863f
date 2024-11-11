@@ -1,0 +1,5 @@
+package fr.assaderie.mobs.render;
+
+public class RenderFatZombie {
+
+}

@@ -1,0 +1,77 @@
+package fr.assaderie.mobs.render;
+
+import org.lwjgl.opengl.GL11;
+import fr.assaderie.mobs.entity.ZombieWolfEntity;
+import fr.assaderie.mobs.models.CustomModelWolf;
+import fr.assaderie.mobs.utils.TexturesZombie;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+
+public class RenderWolf extends RenderLiving {
+
+    private CustomModelWolf wolfModel;
+
+    public RenderWolf() {
+        super(new CustomModelWolf(), 0.5F);
+        this.wolfModel = (CustomModelWolf) super.mainModel;
+        this.setRenderPassModel(this.wolfModel);
+    }
+
+    /**
+     * Méthode pour rendre les yeux lumineux du loup zombie.
+     */
+    protected int renderEyes(ZombieWolfEntity zombieWolfEntity, int pass, float partialTickTime) {
+        if (pass != 0) {
+            return -1;
+        } else {
+            // Charge la texture des yeux
+            this.loadTexture(TexturesZombie.TEXTURES_ZOMBIE_WOLF_EYES);
+            GL11.glEnable(GL11.GL_BLEND);
+            GL11.glDisable(GL11.GL_ALPHA_TEST);
+            GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE); // Mélange pour effet lumineux
+            GL11.glDisable(GL11.GL_LIGHTING); // Désactive l'éclairage pour briller
+
+            // Configure le masque de profondeur en fonction des potions
+            if (zombieWolfEntity.getHasActivePotion()) {
+                GL11.glDepthMask(false);
+            } else {
+                GL11.glDepthMask(true);
+            }
+
+            // Définit la texture de la lumière pour un effet de lueur
+            char luminosite = 61680;
+            int u = luminosite % 65536;
+            int v = luminosite / 65536;
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) u / 1.0F, (float) v / 1.0F);
+
+            // Définit la couleur des yeux (blanc lumineux)
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+            GL11.glEnable(GL11.GL_LIGHTING);
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+            return 1;
+        }
+    }
+
+    /**
+     * Définit le render pass pour activer le rendu des yeux lumineux.
+     */
+    protected int shouldRenderPass(EntityLiving entity, int pass, float partialTickTime) {
+        return this.renderEyes((ZombieWolfEntity) entity, pass, partialTickTime);
+    }
+
+    /**
+     * Redéfinit la méthode de rendu principale pour le loup zombie.
+     */
+    public void doRender(Entity entity, double x, double y, double z, float entityYaw, float partialTicks) {
+        this.renderWolf((ZombieWolfEntity) entity, x, y, z, entityYaw, partialTicks);
+    }
+
+    /**
+     * Méthode principale de rendu pour le loup zombie.
+     */
+    public void renderWolf(ZombieWolfEntity zombieWolfEntity, double x, double y, double z, float entityYaw, float partialTicks) {
+        super.doRender(zombieWolfEntity, x, y, z, entityYaw, partialTicks);
+    }
+}

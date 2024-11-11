@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<item key="selection" value="isHowling"/>
+		<item key="wrap" value="true"/>
+		<item key="incremental" value="true"/>
+		<list key="findhistory">
+			<item value=""/>
+			<item value="isHowling"/>
+			<item value="targetEntity"/>
+			<item value="this.getNavigator().tryMoveToEntityLiving(nearestPlayer, Math.min(this.moveSpeed, 0.3F));"/>
+			<item value="ZombieEgg"/>
+			<item value="Zombie"/>
+			<item value="torchwoo"/>
+			<item value="isTamed"/>
+			<item value="shrin"/>
+			<item value="spawn"/>
+			<item value="zombieone"/>
+			<item value="EntityAnimal"/>
+			<item value="EntityCreature"/>
+			<item value="creature"/>
+			<item value="this.wolfTail.rotateAngleX = ageInTicks;"/>
+		</list>
+		<list key="replacehistory">
+			<item value=""/>
+			<item value="zombie"/>
+			<item value="zombiethree"/>
+			<item value="zomthree"/>
+			<item value="zombieThree"/>
+			<item value="TEXTURES_ZOMBIE_THREE"/>
+			<item value="THREE"/>
+			<item value="zombietwo"/>
+			<item value="zombieTwo"/>
+			<item value="TEXTURES_ZOMBIE_TWO"/>
+			<item value="TEXTURES_ZOMBIE_ONE"/>
+			<item value="zombieone"/>
+			<item value="zombieOne"/>
+			<item value="omdwarf"/>
+			<item value="zombieDwarf"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="1267"/>
+		<item key="DIALOG_Y_ORIGIN" value="60"/>
+		<item key="DIALOG_WIDTH" value="367"/>
+		<item key="DIALOG_HEIGHT" value="410"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.75|0|WINDOWS|1|-13|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+</section>

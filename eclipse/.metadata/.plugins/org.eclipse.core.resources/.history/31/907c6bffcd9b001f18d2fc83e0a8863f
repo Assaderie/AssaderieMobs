@@ -1,0 +1,15 @@
+entity.assaderieMobs.ZombieOne.name=Zombie One
+entity.assaderieMobs.ZombieTwo.name=Zombie Two 
+entity.assaderieMobs.ZombieThree.name=Zombie Three
+entity.assaderieMobs.ZombieFour.name=Zombie Four
+entity.assaderieMobs.ZombieFive.name=Zombie Five
+entity.assaderieMobs.ZombieSix.name=Zombie Six
+entity.assaderieMobs.ZombieSeven.name=Zombie Seven
+entity.assaderieMobs.ZombieEight.name=Zombie Eight
+entity.assaderieMobs.ZombieNine.name=Zombie Nine
+entity.assaderieMobs.ZombieTen.name=Zombie Ten
+
+entity.assaderieMobs.ZombieDog.name=Zombie Dog
+entity.assaderieMobs.ZombieWolf.name=Zombie Wolf
+
+entity.assaderieMobs.Crawler.name=Zombie Crawler

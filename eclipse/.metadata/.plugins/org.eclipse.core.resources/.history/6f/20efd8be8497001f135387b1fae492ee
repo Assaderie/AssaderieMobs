@@ -1,0 +1,54 @@
+package fr.assaderie.mobs.render;
+
+import fr.assaderie.mobs.entity.ZombieWolfEntity;
+import fr.assaderie.mobs.utils.TexturesZombie;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.entity.Entity;
+import net.minecraft.world.World;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+
+public class RenderWolf extends RenderLiving {
+
+    public RenderWolf() {
+        super(new CustomModelWolf(), 0.5F);
+    }
+
+    @Override
+    public void doRender(Entity entity, double x, double y, double z, float yaw, float partialTickTime) {
+        if (entity instanceof ZombieWolfEntity) {
+            ZombieWolfEntity wolf = (ZombieWolfEntity) entity;
+
+            // Rendu de la texture du corps
+            bindTexture(TexturesZombie.TEXTURE_ZOMBIE_WOLF);
+            super.doRender(entity, x, y, z, yaw, partialTickTime);
+
+            // Si c'est la nuit, appliquez les yeux brillants
+            World world = wolf.worldObj;
+            if (!world.isDaytime()) {
+                renderEyes(wolf, partialTickTime);
+            }
+        }
+    }
+
+    // Méthode pour afficher les yeux brillants
+    protected void renderEyes(ZombieWolfEntity wolf, float partialTicks) {
+        bindTexture(TexturesZombie.TEXTURES_ZOMBIE_WOLF_EYES); // Texture des yeux brillants
+        
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_ALPHA_TEST);
+        GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
+        GL11.glDisable(GL11.GL_LIGHTING);
+        GL11.glDepthMask(true); // Assure que les yeux brillants se superposent correctement
+
+        // Rendu de la partie yeux
+        this.mainModel.render(wolf, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+
+        GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glDisable(GL11.GL_BLEND);
+    }
+
+    protected void bindTexture(String texturePath) {
+        this.loadTexture(texturePath); // Utilisation de la méthode `loadTexture` en 1.4.7
+    }
+}

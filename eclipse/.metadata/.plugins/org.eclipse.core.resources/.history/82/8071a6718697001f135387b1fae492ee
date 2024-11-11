@@ -1,0 +1,11 @@
+package fr.assaderie.mobs.render;
+
+import fr.assaderie.mobs.models.CustomModelWolf;
+import net.minecraft.client.renderer.entity.RenderLiving;
+
+public class RenderWolf extends RenderLiving {
+
+    public RenderWolf() {
+        super(new CustomModelWolf(), 0.5F);
+    }
+}

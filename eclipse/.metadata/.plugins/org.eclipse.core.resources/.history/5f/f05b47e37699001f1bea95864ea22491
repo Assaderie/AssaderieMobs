@@ -1,0 +1,53 @@
+package fr.assaderie.mobs.events;
+
+import fr.assaderie.mobs.config.AllEntityConfig;
+import fr.assaderie.mobs.managers.ConfigZombieManager;
+import fr.assaderie.mobs.managers.ConfigZombieManager.ZombieConfig;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+
+public class ZombieConfigEventHandler {
+
+    @ForgeSubscribe
+    public void onZombieUpdate(LivingUpdateEvent event) {
+        // Vérifier si l'entité est un zombie Vanilla
+        if (!(event.entity instanceof EntityZombie)) {
+            return;
+        }
+
+        EntityZombie zombie = (EntityZombie) event.entity;
+
+        // Appliquer la configuration spécifique ou globale en fonction du paramètre enableZombieConfig
+        if (AllEntityConfig.enableZombieConfig) {
+            // Récupérer la configuration spécifique pour ce type de zombie
+            ZombieConfig config = ConfigZombieManager.getZombieConfig("ZombieVanilla"); // Spécifiez le nom de configuration souhaité
+
+            if (config != null) {
+                // Appliquer la configuration spécifique
+                zombie.moveSpeed = config.speed;
+                zombie.setEntityHealth(config.health);
+                zombie.attackStrength = config.damage;
+
+                // Autres configurations spécifiques
+                if (!config.sunDamageEnabled && zombie.isBurning()) {
+                    zombie.extinguish();
+                }
+
+                zombie.canPickUpLoot = config.dropEnabled; // Définir si le zombie peut ramasser des objets
+            }
+        } else {
+            // Appliquer la configuration globale si enableZombieConfig est désactivé
+            zombie.moveSpeed = AllEntityConfig.globalSpeed;
+            zombie.setEntityHealth(AllEntityConfig.globalHealth);
+            zombie.attackStrength = (int) AllEntityConfig.globalDamage;
+
+            // Autres configurations globales
+            if (!AllEntityConfig.sunDamageEnabled && zombie.isBurning()) {
+                zombie.extinguish();
+            }
+
+            zombie.canPickUpLoot = AllEntityConfig.dropEnabled;
+        }
+    }
+}

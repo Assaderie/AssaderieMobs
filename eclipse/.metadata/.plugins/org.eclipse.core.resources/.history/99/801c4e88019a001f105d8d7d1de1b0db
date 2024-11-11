@@ -1,0 +1,149 @@
+package fr.assaderie.mobs.events;
+
+import fr.assaderie.mobs.config.AllEntityConfig;
+import fr.assaderie.mobs.managers.ConfigZombieManager;
+import fr.assaderie.mobs.managers.ConfigZombieManager.ZombieConfig;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
+
+public class ZombieConfigEventHandler {
+
+    private ZombieConfig config;
+
+    // Stores the last time each zombie detected an animal
+    private final Map<EntityZombie, Long> zombieLastAnimalDetection = new HashMap<EntityZombie, Long>();
+
+    @ForgeSubscribe
+    public void onEntitySpawn(EntityJoinWorldEvent event) {
+        if (event.entity instanceof EntityZombie) {
+            EntityZombie zombie = (EntityZombie) event.entity;
+
+            if (!AllEntityConfig.enableZombieConfig) {
+                applyGlobalConfig(zombie);
+            } else {
+                config = ConfigZombieManager.getZombieConfig("ZombieVanilla");
+                if (config != null) {
+                    applySpecificConfig(zombie, config);
+                }
+            }
+        }
+    }
+
+    private void applyGlobalConfig(EntityZombie zombie) {
+        setZombieHealth(zombie, AllEntityConfig.globalHealth);
+        setZombieSpeed(zombie, AllEntityConfig.globalSpeed);
+        setZombieSunDamage(zombie, AllEntityConfig.sunDamageEnabled);
+    }
+
+    private void applySpecificConfig(EntityZombie zombie, ZombieConfig config) {
+        setZombieHealth(zombie, config.health);
+        setZombieSpeed(zombie, config.speed);
+        setZombieSunDamage(zombie, config.sunDamageEnabled);
+    }
+
+    private void setZombieHealth(EntityZombie zombie, int health) {
+        zombie.setEntityHealth(health);
+    }
+
+    private void setZombieSpeed(EntityZombie zombie, float speed) {
+        zombie.setMoveForward(speed);
+    }
+
+    private void setZombieSunDamage(EntityZombie zombie, boolean sunDamageEnabled) {
+        try {
+            Field isImmuneToFireField = net.minecraft.entity.Entity.class.getDeclaredField("isImmuneToFire");
+            isImmuneToFireField.setAccessible(true);
+            isImmuneToFireField.setBoolean(zombie, !sunDamageEnabled);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @ForgeSubscribe
+    public void onLivingUpdate(LivingUpdateEvent event) {
+        if (event.entity instanceof EntityZombie) {
+            EntityZombie zombie = (EntityZombie) event.entity;
+
+            // Get config values for animal detection radius and delay near animals
+            int animalDetectionRadius = config != null ? config.playerDetectionRadius : AllEntityConfig.playerDetectionRadius;
+            int delayNearAnimal = config != null ? config.delayNearAnimal : AllEntityConfig.delayNearAnimal;
+
+            // Check for nearby animals within the configured radius
+            EntityAnimal closestAnimal = getClosestAnimalWithinRadius(zombie, animalDetectionRadius);
+            if (closestAnimal != null) {
+                // Check if enough time has passed since the last detection
+                long currentTime = System.currentTimeMillis();
+                long lastDetectionTime = zombieLastAnimalDetection.getOrDefault(zombie, 0L);
+
+                if (currentTime - lastDetectionTime >= delayNearAnimal) {
+                    // Take action upon detecting an animal (e.g., target the animal)
+                    zombie.setAttackTarget(closestAnimal);
+
+                    // Update the last detection time
+                    zombieLastAnimalDetection.put(zombie, currentTime);
+                }
+            } else {
+                // Clear the target if no animals are within the detection radius
+                zombie.setAttackTarget(null);
+                zombieLastAnimalDetection.remove(zombie);
+            }
+        }
+    }
+
+    private EntityAnimal getClosestAnimalWithinRadius(EntityZombie zombie, int radius) {
+        // Loop through entities around the zombie to find the closest animal within the radius
+        EntityAnimal closestAnimal = null;
+        double closestDistance = Double.MAX_VALUE;
+
+        for (Object entity : zombie.worldObj.loadedEntityList) {
+            if (entity instanceof EntityAnimal) {
+                EntityAnimal animal = (EntityAnimal) entity;
+                double distance = zombie.getDistanceToEntity(animal);
+
+                if (distance <= radius && distance < closestDistance) {
+                    closestDistance = distance;
+                    closestAnimal = animal;
+                }
+            }
+        }
+        return closestAnimal;
+    }
+
+    @ForgeSubscribe
+    public void onZombieHurt(LivingHurtEvent event) {
+        if (event.source.getEntity() instanceof EntityZombie) {
+            EntityZombie zombie = (EntityZombie) event.source.getEntity();
+            if (config != null) {
+                // Modify the damage amount based on configuration
+                event.ammount = config.damage;
+            } else {
+                // Apply global damage configuration if specific config is not set
+                event.ammount = (int) AllEntityConfig.globalDamage;
+            }
+        }
+    }
+
+    @ForgeSubscribe
+    public void onZombieDeath(LivingDeathEvent event) {
+        if (event.entity instanceof EntityZombie) {
+            EntityZombie zombie = (EntityZombie) event.entity;
+            if (config != null && !config.dropEnabled) {
+                // Cancel drops if dropEnabled is false
+                event.entityLiving.captureDrops = true;
+                event.entityLiving.capturedDrops.clear();
+            } else if (config != null && config.dropItemId != 0) {
+                // Add a specific drop if configured
+                zombie.entityDropItem(new net.minecraft.item.ItemStack(config.dropItemId, 1, 0), 0.0F);
+            }
+        }
+    }
+}

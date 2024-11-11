@@ -1,0 +1,11 @@
+package fr.assaderie.mobs.render;
+
+import fr.assaderie.mobs.models.CustomZombieChargeurModel;
+import net.minecraft.client.renderer.entity.RenderLiving;
+
+public class RenderZombieChargeur extends RenderLiving {
+
+	public RenderZombieChargeur() {
+		super(new CustomZombieChargeurModel(), 0.5F);
+	}
+}

@@ -1,0 +1,114 @@
+package fr.assaderie.mobs.render;
+
+import fr.assaderie.mobs.models.CustomModelWolf;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.passive.EntityWolf;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+
+public class RenderWolf extends RenderLiving {
+
+    private CustomModelWolf wolfModel;
+
+    public RenderWolf() {
+        super(new CustomModelWolf(), 0.5F);
+        this.wolfModel = (CustomModelWolf) super.mainModel;
+        this.setRenderPassModel(this.wolfModel);
+    }
+
+    /**
+     * Renders the wolf
+     */
+    public void renderWolf(EntityWolf entityWolf, double x, double y, double z, float yaw, float partialTicks) {
+        super.doRenderLiving(entityWolf, x, y, z, yaw, partialTicks);
+    }
+
+    /**
+     * Render any item the wolf might be "carrying"
+     */
+    protected void renderCarrying(EntityWolf entityWolf, float partialTicks) {
+        super.renderEquippedItems(entityWolf, partialTicks);
+
+        // If the wolf has a special item (replace this with the correct condition for your mod)
+        if (entityWolf.isTamed()) { // Example condition: Tamed wolves "carry" something
+            GL11.glEnable(GL12.GL_RESCALE_NORMAL);
+            GL11.glPushMatrix();
+            float scale = 0.5F;
+            GL11.glTranslatef(0.0F, 0.7F, -0.6F);
+            GL11.glRotatef(30.0F, 1.0F, 0.0F, 0.0F);
+            GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
+            GL11.glScalef(-scale, -scale, scale);
+
+            int brightness = entityWolf.getBrightnessForRender(partialTicks);
+            int u = brightness % 65536;
+            int v = brightness / 65536;
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)u / 1.0F, (float)v / 1.0F);
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+
+            this.loadTexture("/terrain.png"); // Modify this to use your texture path
+            // Render a block as a placeholder item
+            this.renderBlocks.renderBlockAsItem(Block.grass, 0, 1.0F);
+
+            GL11.glPopMatrix();
+            GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+        }
+    }
+
+    /**
+     * Render the wolf's glowing eyes
+     */
+    protected int renderEyes(EntityWolf entityWolf, int pass, float partialTicks) {
+        if (pass != 0) {
+            return -1;
+        } else {
+            this.loadTexture("/mobs/assaderie/textures/entity/wolf/wolf_eyes.png"); // Change this path to your custom texture for wolf eyes
+            GL11.glEnable(GL11.GL_BLEND);
+            GL11.glDisable(GL11.GL_ALPHA_TEST);
+            GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
+            GL11.glDisable(GL11.GL_LIGHTING);
+
+            if (entityWolf.isTamed()) {
+                GL11.glDepthMask(false);
+            } else {
+                GL11.glDepthMask(true);
+            }
+
+            char brightness = 61680;
+            int u = brightness % 65536;
+            int v = brightness / 65536;
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)u / 1.0F, (float)v / 1.0F);
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+            GL11.glEnable(GL11.GL_LIGHTING);
+
+            return 1; // Indicate we applied the custom pass
+        }
+    }
+
+    /**
+     * Handles rendering pass for glowing eyes
+     */
+    protected int shouldRenderPass(EntityLiving entity, int pass, float partialTicks) {
+        return this.renderEyes((EntityWolf) entity, pass, partialTicks);
+    }
+
+    /**
+     * Render carrying items if needed
+     */
+    protected void renderEquippedItems(EntityLiving entity, float partialTicks) {
+        this.renderCarrying((EntityWolf) entity, partialTicks);
+    }
+
+    public void doRenderLiving(EntityLiving entity, double x, double y, double z, float yaw, float partialTicks) {
+        this.renderWolf((EntityWolf) entity, x, y, z, yaw, partialTicks);
+    }
+
+    /**
+     * Bridge method for rendering the entity
+     */
+    public void doRender(Entity entity, double x, double y, double z, float yaw, float partialTicks) {
+        this.renderWolf((EntityWolf) entity, x, y, z, yaw, partialTicks);
+    }
+}

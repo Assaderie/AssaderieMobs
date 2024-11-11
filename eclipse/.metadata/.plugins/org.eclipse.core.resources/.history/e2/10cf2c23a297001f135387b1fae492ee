@@ -1,0 +1,69 @@
+package fr.assaderie.mobs.render;
+
+import fr.assaderie.mobs.entity.ZombieWolfEntity;
+import fr.assaderie.mobs.models.CustomModelWolf;
+import fr.assaderie.mobs.utils.TexturesZombie;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import org.lwjgl.opengl.GL11;
+
+public class RenderWolf extends RenderLiving {
+
+    // Chemins des textures
+    private static final String WOLF_BODY_TEXTURE = "/mobs/assaderie/textures/entity/wolf/wolf.png";
+    private static final String WOLF_EYES_TEXTURE = "/mobs/assaderie/textures/entity/wolf/wolf_eyes.png";
+
+    public RenderWolf() {
+        super(new CustomModelWolf(), 0.5F); // Initialiser le modèle avec une ombre
+    }
+
+    @Override
+    public void doRender(Entity entity, double x, double y, double z, float yaw, float partialTickTime) {
+        this.loadTexture(WOLF_BODY_TEXTURE); // Charger la texture du corps
+        super.doRender(entity, x, y, z, yaw, partialTickTime);
+    }
+
+    // Méthode pour gérer les passes de rendu, comme le modèle Enderman
+    @Override
+    protected int shouldRenderPass(EntityLiving entity, int pass, float partialTickTime) {
+        if (entity instanceof ZombieWolfEntity) {
+            ZombieWolfEntity wolf = (ZombieWolfEntity) entity;
+
+            // Vérifie s'il fait nuit et active la texture des yeux lumineux
+            if (pass == 0 && !wolf.worldObj.isDaytime()) {
+                this.loadTexture(WOLF_EYES_TEXTURE);
+                
+                // Configuration pour effet lumineux
+                GL11.glEnable(GL11.GL_BLEND);
+                GL11.glDisable(GL11.GL_ALPHA_TEST);
+                GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
+                GL11.glDisable(GL11.GL_LIGHTING);
+
+                // Si le loup a une potion active, ajuster la profondeur
+                if (wolf.getActivePotionEffects().size() > 0) {
+                    GL11.glDepthMask(false);
+                } else {
+                    GL11.glDepthMask(true);
+                }
+
+                // Rétablit la luminosité
+                char light = 61680;
+                int lightmapX = light % 65536;
+                int lightmapY = light / 65536;
+                OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightmapX / 1.0F, lightmapY / 1.0F);
+
+                return 1; // Pass de rendu pour les yeux lumineux
+            }
+        }
+        return -1; // Ne rien faire pour d'autres passes
+    }
+
+    protected void func_82422_c() {
+        // Réactiver les paramètres de lumière et de profondeur pour les autres parties
+        GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glDepthMask(true);
+    }
+}

@@ -1,0 +1,73 @@
+package fr.assaderie.mobs.render;
+
+import org.lwjgl.opengl.GL11;
+import net.minecraft.client.renderer.OpenGlHelper;
+import fr.assaderie.mobs.entity.ZombieWolfEntity;
+import fr.assaderie.mobs.models.CustomModelWolf;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+
+public class RenderWolf extends RenderLiving {
+
+	private CustomModelWolf wolfModel;
+    // Chemins des textures
+    private static final String WOLF_BODY_TEXTURE = "/mobs/assaderie/textures/entity/wolf/wolf.png";
+    private static final String WOLF_EYES_TEXTURE = "/mobs/assaderie/textures/entity/wolf/wolf_eyes.png"; // Texture des yeux seulement
+
+    public RenderWolf() {
+        super(new CustomModelWolf(), 0.5F); // Initialiser le modèle avec une ombre
+        this.setRenderPassModel(this.wolfModel);
+    }
+
+    @Override
+    public void doRender(Entity entity, double x, double y, double z, float yaw, float partialTickTime) {
+        this.loadTexture(WOLF_BODY_TEXTURE); // Charger la texture du corps
+        super.doRender(entity, x, y, z, yaw, partialTickTime);
+    }
+
+    // Gestion du pass de rendu pour les yeux lumineux, sans rendre le corps
+    @Override
+    protected int shouldRenderPass(EntityLiving entity, int pass, float partialTickTime) {
+        if (entity instanceof ZombieWolfEntity) {
+            ZombieWolfEntity wolf = (ZombieWolfEntity) entity;
+
+            // Vérifie s'il fait nuit et active la texture des yeux lumineux
+            if (pass == 0 && !wolf.worldObj.isDaytime()) {
+                System.out.println("Rendering glowing eyes for ZombieWolfEntity"); // Debug
+
+                this.loadTexture(WOLF_EYES_TEXTURE); // Charger la texture des yeux seulement
+                
+                // Configuration pour effet lumineux
+                GL11.glEnable(GL11.GL_BLEND);
+                GL11.glDisable(GL11.GL_ALPHA_TEST);
+                GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE); // Effet de brillance
+                GL11.glDisable(GL11.GL_LIGHTING);
+
+                // Si le loup a une potion active, ajuster la profondeur
+                if (wolf.getActivePotionEffects().size() > 0) {
+                    GL11.glDepthMask(false);
+                } else {
+                    GL11.glDepthMask(true);
+                }
+
+                // Rétablit la luminosité
+                char light = 61680;
+                int lightmapX = light % 65536;
+                int lightmapY = light / 65536;
+                OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightmapX / 1.0F, lightmapY / 1.0F);
+
+                return 1; // Pass de rendu pour les yeux lumineux
+            }
+        }
+        return -1; // Aucun autre pass de rendu
+    }
+
+
+    protected void func_82422_c() {
+        // Réactiver les paramètres de lumière et de profondeur après le rendu des yeux
+        GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glDepthMask(true);
+    }
+}

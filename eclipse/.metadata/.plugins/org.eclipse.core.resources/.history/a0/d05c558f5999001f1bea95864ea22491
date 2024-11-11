@@ -1,0 +1,61 @@
+package fr.assaderie.mobs.render;
+
+import fr.assaderie.mobs.models.CustomModelWolf;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.passive.EntityWolf;
+import org.lwjgl.opengl.GL11;
+
+public class RenderWolf extends RenderLiving {
+
+    // Chemin de la texture des yeux brillants
+    private static final String wolfEyesTexture = "/mobs/assaderie/textures/entity/wolf/wolf_eyes.png";
+
+    public RenderWolf() {
+        super(new CustomModelWolf(), 0.5F); // Ombre de base
+    }
+
+    @Override
+    protected int shouldRenderPass(EntityLiving entity, int pass, float partialTicks) {
+        return setWolfEyeBrightness((EntityWolf) entity, pass);
+    }
+
+    protected int setWolfEyeBrightness(EntityWolf entityWolf, int pass) {
+        if (pass != 0) {
+            return -1; // Si ce n'est pas le premier passage, on ne fait rien
+        }
+
+        // Applique la texture des yeux brillants
+        this.loadTexture(wolfEyesTexture);
+
+        // Configure les paramètres pour l’effet lumineux
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_ALPHA_TEST);
+        GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE); // Mélange pour un effet de brillance
+
+        // Si le loup a un effet de potion, désactive la profondeur
+        if (entityWolf.getHasActivePotion()) {
+            GL11.glDepthMask(false);
+        } else {
+            GL11.glDepthMask(true);
+        }
+
+        // Utilisation de 61680 pour configurer les coordonnées du lightmap (luminosité maximale)
+        char brightness = 61680;
+        int u = brightness % 65536;
+        int v = brightness / 65536;
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)u / 1.0F, (float)v / 1.0F);
+
+        // Définit la couleur de la texture des yeux en blanc pur
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+
+        return 1; // Indique qu'on applique le rendu spécial
+    }
+
+    @Override
+    protected void preRenderCallback(EntityLiving entity, float partialTickTime) {
+        // Méthode de rappel pour ajuster la taille du loup ou ajouter d’autres effets
+        super.preRenderCallback(entity, partialTickTime);
+    }
+}

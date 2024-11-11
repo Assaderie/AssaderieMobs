@@ -1,0 +1,53 @@
+---- Minecraft Crash Report ----
+// Sorry :(
+
+Time: 25/10/24 22:00
+Description: Exception in server tick loop
+
+java.lang.Error: Unresolved compilation problems: 
+	zombieOneSpawnEgg cannot be resolved or is not a field
+	zombieTwoSpawnEgg cannot be resolved or is not a field
+
+	at fr.assaderie.mobs.PickBlockEventHandler.getSpawnEggForEntity(PickBlockEventHandler.java:32)
+	at fr.assaderie.mobs.PickBlockEventHandler.onEntityInteract(PickBlockEventHandler.java:21)
+	at net.minecraftforge.event.ASMEventHandler_5_PickBlockEventHandler_onEntityInteract_EntityInteractEvent.invoke(.dynamic)
+	at net.minecraftforge.event.ASMEventHandler.invoke(ASMEventHandler.java:35)
+	at net.minecraftforge.event.EventBus.post(EventBus.java:103)
+	at net.minecraft.entity.player.EntityPlayer.interactWith(EntityPlayer.java:1203)
+	at net.minecraft.network.NetServerHandler.handleUseEntity(NetServerHandler.java:840)
+	at net.minecraft.network.packet.Packet7UseEntity.processPacket(Packet7UseEntity.java:57)
+	at net.minecraft.network.MemoryConnection.processReadPackets(MemoryConnection.java:80)
+	at net.minecraft.network.NetServerHandler.networkTick(NetServerHandler.java:136)
+	at net.minecraft.network.NetworkListenThread.networkTick(NetworkListenThread.java:57)
+	at net.minecraft.server.integrated.IntegratedServerListenThread.networkTick(IntegratedServerListenThread.java:108)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:703)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:599)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:123)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:497)
+	at net.minecraft.server.ThreadMinecraftServer.run(ThreadMinecraftServer.java:16)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- System Details --
+Details:
+	Minecraft Version: 1.4.7
+	Operating System: Windows 8 (amd64) version 6.2
+	Java Version: 1.6.0_45, Sun Microsystems Inc.
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Sun Microsystems Inc.
+	Memory: 862615976 bytes (822 MB) / 1060372480 bytes (1011 MB) up to 1060372480 bytes (1011 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	AABB Pool Size: 380 (21280 bytes; 0 MB) allocated, 151 (8456 bytes; 0 MB) used
+	Suspicious classes: FML and Forge are installed
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: MCP v7.26a FML v4.7.35.556 Minecraft Forge 6.6.2.534 4 mods loaded, 4 mods active
+	mcp [Minecraft Coder Pack] (minecraft.jar) Unloaded->Constructed->Pre-initialized->Initialized->Post-initialized->Available->Available->Available->Available
+	FML [Forge Mod Loader] (coremods) Unloaded->Constructed->Pre-initialized->Initialized->Post-initialized->Available->Available->Available->Available
+	Forge [Minecraft Forge] (coremods) Unloaded->Constructed->Pre-initialized->Initialized->Post-initialized->Available->Available->Available->Available
+	assaderieMobs [Assaderie Mobs] (bin) Unloaded->Constructed->Pre-initialized->Initialized->Post-initialized->Available->Available->Available->Available
+	Profiler Position: N/A (disabled)
+	Vec3 Pool Size: 36 (2016 bytes; 0 MB) allocated, 27 (1512 bytes; 0 MB) used
+	Player Count: 1 / 8; [EntityPlayerMP['Nokane'/13, l='New World', x=-236,27, y=1,00, z=1358,30]]
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'forge,fml'

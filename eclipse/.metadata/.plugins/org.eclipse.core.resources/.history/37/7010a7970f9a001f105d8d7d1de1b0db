@@ -1,0 +1,155 @@
+package fr.assaderie.mobs.entity;
+
+import java.util.List;
+import java.util.Random;
+
+import fr.assaderie.mobs.config.AllDoganWolfConfig;
+import fr.assaderie.mobs.managers.ConfigDogAndWolfManager;
+import fr.assaderie.mobs.managers.ConfigDogAndWolfManager.DogAndWolfConfig;
+import fr.assaderie.mobs.utils.TexturesZombie;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
+
+public class ZombieWolfEntity extends EntityMob {
+
+    private DogAndWolfConfig config;
+    private boolean isHowling = false;
+    private static final int HOWLING_DURATION = 60;
+    private int howlingTimer = 0;
+
+    public ZombieWolfEntity(World world) {
+        super(world);
+        config = ConfigDogAndWolfManager.getDogAndWolfConfig("ZombieWolf");
+        initializeAttributes();
+        configureTasks();
+    }
+
+    private void initializeAttributes() {
+        if (config != null) {
+            this.moveSpeed = config.speed;
+            this.setEntityHealth(config.health);
+        } else {
+            this.moveSpeed = 0.3F;
+            this.setEntityHealth(20);
+        }
+        this.texture = TexturesZombie.TEXTURE_ZOMBIE_WOLF;
+        this.setSize(0.6F, 0.8F);
+        this.getNavigator().setAvoidsWater(true);
+    }
+
+    private void configureTasks() {
+        this.tasks.addTask(1, new EntityAISwimming(this));
+        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, this.moveSpeed, true));
+        this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(4, new EntityAILookIdle(this));
+        this.tasks.addTask(5, new EntityAIWander(this, this.moveSpeed));
+
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 16.0F, 0, true));
+    }
+
+    public boolean isHowling() {
+        return isHowling;
+    }
+
+    public void startHowling() {
+        isHowling = true;
+        howlingTimer = HOWLING_DURATION;
+        this.playSound("wolf.wolfhowl", 1.0F, 1.0F);
+    }
+
+    @Override
+    public void onLivingUpdate() {
+        super.onLivingUpdate();
+
+        if (howlingTimer > 0) {
+            howlingTimer--;
+            if (howlingTimer == 0) {
+                isHowling = false;
+            } else {
+                this.getNavigator().clearPathEntity(); // Arrête le mouvement pendant le hurlement
+            }
+            return; 
+        }
+
+        if (!this.worldObj.isDaytime()) {
+            double playerDetectRadius = config != null ? config.playerDetectionRadius : AllDoganWolfConfig.playerDetectionRadius;
+            EntityPlayer nearestPlayer = this.worldObj.getClosestPlayerToEntity(this, playerDetectRadius);
+
+            if (nearestPlayer != null && this.canEntityBeSeen(nearestPlayer)) {
+                if (!isHowling) {
+                    startHowling();
+                } else {
+                    this.setAttackTarget(nearestPlayer);
+                    this.getNavigator().tryMoveToEntityLiving(nearestPlayer, this.moveSpeed);
+                }
+            }
+        }
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        boolean canSpawnInDay = config != null ? config.canSpawnInDay : AllDoganWolfConfig.canSpawnInDay;
+
+        if (!canSpawnInDay && this.worldObj.isDaytime()) {
+            return false;
+        }
+
+        int torchRadius = config != null ? config.torchSpawnRadius : AllDoganWolfConfig.torchSpawnRadius;
+        return !isNearTorch(torchRadius) && this.worldObj.getBlockLightValue((int) this.posX, (int) this.posY, (int) this.posZ) <= 9;
+    }
+
+    private boolean isNearTorch(int radius) {
+        int blockRadius = radius / 2;
+        for (int x = (int) this.posX - blockRadius; x <= (int) this.posX + blockRadius; x++) {
+            for (int y = (int) this.posY - blockRadius; y <= (int) this.posY + blockRadius; y++) {
+                for (int z = (int) this.posZ - blockRadius; z <= (int) this.posZ + blockRadius; z++) {
+                    if (this.worldObj.getBlockId(x, y, z) == net.minecraft.block.Block.torchWood.blockID) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public int getAttackStrength(Entity entity) {
+        return (int) (config != null ? config.damage : AllDoganWolfConfig.globalDamage);
+    }
+
+    @Override
+    protected int getDropItemId() {
+        return config != null && config.dropEnabled ? config.dropItemId : AllDoganWolfConfig.dropItemId;
+    }
+
+    @Override
+    protected String getLivingSound() {
+        return "wolf.say";
+    }
+
+    @Override
+    protected String getHurtSound() {
+        return "wolf.hurt";
+    }
+
+    @Override
+    protected String getDeathSound() {
+        return "wolf.death";
+    }
+
+	@Override
+	public int getMaxHealth() {
+		return config != null ? config.health : AllDoganWolfConfig.globalHealth;
+	}
+}

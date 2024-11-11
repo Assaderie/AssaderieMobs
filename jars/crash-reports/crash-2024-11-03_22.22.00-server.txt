@@ -1,0 +1,93 @@
+---- Minecraft Crash Report ----
+// Why did you do that?
+
+Time: 03/11/24 22:22
+Description: Ticking entity
+
+java.lang.Error: Unresolved compilation problems: 
+	ZombieAwareness cannot be resolved to a variable
+	ZombieAwareness cannot be resolved to a variable
+
+	at fr.assaderie.mobs.entity.ZombieWolfEntity.handleZombieAwarnessBehaviors(ZombieWolfEntity.java:187)
+	at fr.assaderie.mobs.entity.ZombieWolfEntity.onLivingUpdate(ZombieWolfEntity.java:137)
+	at net.minecraft.entity.EntityLiving.onUpdate(EntityLiving.java:843)
+	at net.minecraft.entity.monster.EntityMob.onUpdate(EntityMob.java:45)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:2293)
+	at net.minecraft.world.WorldServer.updateEntityWithOptionalForce(WorldServer.java:647)
+	at net.minecraft.world.World.updateEntity(World.java:2255)
+	at net.minecraft.world.World.updateEntities(World.java:2109)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:516)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:680)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:599)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:123)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:497)
+	at net.minecraft.server.ThreadMinecraftServer.run(ThreadMinecraftServer.java:16)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at fr.assaderie.mobs.entity.ZombieWolfEntity.handleZombieAwarnessBehaviors(ZombieWolfEntity.java:187)
+	at fr.assaderie.mobs.entity.ZombieWolfEntity.onLivingUpdate(ZombieWolfEntity.java:137)
+	at net.minecraft.entity.EntityLiving.onUpdate(EntityLiving.java:843)
+	at net.minecraft.entity.monster.EntityMob.onUpdate(EntityMob.java:45)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:2293)
+	at net.minecraft.world.WorldServer.updateEntityWithOptionalForce(WorldServer.java:647)
+	at net.minecraft.world.World.updateEntity(World.java:2255)
+
+-- Entity being ticked --
+Details:
+	Entity Type: assaderieMobs.ZombieWolf (fr.assaderie.mobs.entity.ZombieWolfEntity)
+	Entity ID: 591
+	Name: Zombie Wolf
+	Exact location: 255,50, 39,00, 232,50
+	Block location: World: (255,39,232), Chunk: (at 15,2,8 in 15,14; contains blocks 240,0,224 to 255,255,239), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Momentum: 0,00, -0,08, 0,00
+Stacktrace:
+	at net.minecraft.world.World.updateEntities(World.java:2109)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:516)
+
+-- Affected level --
+Details:
+	Level name: New World
+	All players: 1 total; [EntityPlayerMP['Nokane'/144, l='New World', x=166,50, y=63,03, z=229,50]]
+	Chunk stats: ServerChunkCache: 625 Drop: 0
+	Level seed: 4674909046187111855
+	Level generator: ID 00 - default, ver 1. Features enabled: true
+	Level generator options: 
+	Level spawn location: World: (164,64,236), Chunk: (at 4,4,12 in 10,14; contains blocks 160,0,224 to 175,255,239), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Level time: 8 game time, 8 day time
+	Level dimension: 0
+	Level storage version: 0x04ABD - Anvil
+	Level weather: Rain time: 53361 (now: false), thunder time: 66303 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: true
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:680)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:599)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:123)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:497)
+	at net.minecraft.server.ThreadMinecraftServer.run(ThreadMinecraftServer.java:16)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.4.7
+	Operating System: Windows 8 (amd64) version 6.2
+	Java Version: 1.6.0_45, Sun Microsystems Inc.
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Sun Microsystems Inc.
+	Memory: 879569256 bytes (838 MB) / 1060372480 bytes (1011 MB) up to 1060372480 bytes (1011 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	AABB Pool Size: 3163 (177128 bytes; 0 MB) allocated, 3054 (171024 bytes; 0 MB) used
+	Suspicious classes: FML and Forge are installed
+	IntCache: cache: 0, tcache: 0, allocated: 3, tallocated: 63
+	FML: MCP v7.26a FML v4.7.35.556 Minecraft Forge 6.6.2.534 4 mods loaded, 4 mods active
+	mcp [Minecraft Coder Pack] (minecraft.jar) Unloaded->Constructed->Pre-initialized->Initialized->Post-initialized->Available->Available->Available->Available
+	FML [Forge Mod Loader] (coremods) Unloaded->Constructed->Pre-initialized->Initialized->Post-initialized->Available->Available->Available->Available
+	Forge [Minecraft Forge] (coremods) Unloaded->Constructed->Pre-initialized->Initialized->Post-initialized->Available->Available->Available->Available
+	assaderieMobs [Assaderie Mobs] (bin) Unloaded->Constructed->Pre-initialized->Initialized->Post-initialized->Available->Available->Available->Available
+	Profiler Position: N/A (disabled)
+	Vec3 Pool Size: 1840 (103040 bytes; 0 MB) allocated, 1840 (103040 bytes; 0 MB) used
+	Player Count: 1 / 8; [EntityPlayerMP['Nokane'/144, l='New World', x=166,50, y=63,03, z=229,50]]
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'forge,fml'

@@ -1,0 +1,120 @@
+package fr.assaderie.mobs.events;
+
+import fr.assaderie.mobs.config.AllEntityConfig;
+import fr.assaderie.mobs.managers.ConfigZombieManager;
+import fr.assaderie.mobs.managers.ConfigZombieManager.ZombieConfig;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.util.DamageSource;
+import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+
+import java.lang.reflect.Field;
+
+public class ZombieConfigEventHandler {
+
+    // Utilisation de la réflexion pour accéder à moveSpeed
+    private static Field moveSpeedField;
+
+    static {
+        try {
+            moveSpeedField = EntityZombie.class.getSuperclass().getDeclaredField("speed");
+            moveSpeedField.setAccessible(true);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @ForgeSubscribe
+    public void onZombieUpdate(LivingUpdateEvent event) {
+        // Vérifie que l'entité est un zombie Vanilla
+        if (!(event.entity instanceof EntityZombie)) {
+            return;
+        }
+
+        EntityZombie zombie = (EntityZombie) event.entity;
+
+        // Applique la configuration unique ou la configuration globale
+        if (AllEntityConfig.enableZombieConfig) {
+            // Charger la configuration spécifique pour ZombieVanilla
+            ZombieConfig config = ConfigZombieManager.getZombieConfig("ZombieVanilla");
+            if (config != null) {
+                applyConfig(zombie, config);
+            }
+        } else {
+            // Utiliser la configuration globale
+            applyGlobalConfig(zombie);
+        }
+    }
+
+    /**
+     * Applique la configuration spécifique d'un zombie
+     */
+    private void applyConfig(EntityZombie zombie, ZombieConfig config) {
+        try {
+            moveSpeedField.set(zombie, config.speed);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        zombie.setEntityHealth(config.health);
+
+        // Gérer les dégâts du soleil en fonction de la config unique
+        if (!config.sunDamageEnabled && zombie.isBurning()) {
+            zombie.extinguish();
+        } else if (config.sunDamageEnabled && zombie.worldObj.isDaytime() && !zombie.worldObj.isRemote) {
+            handleSunlightDamage(zombie);
+        }
+    }
+
+    /**
+     * Applique la configuration globale à un zombie
+     */
+    private void applyGlobalConfig(EntityZombie zombie) {
+        try {
+            moveSpeedField.set(zombie, AllEntityConfig.globalSpeed);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        zombie.setEntityHealth(AllEntityConfig.globalHealth);
+
+        // Gérer les dégâts du soleil en fonction de la config globale
+        if (!AllEntityConfig.sunDamageEnabled && zombie.isBurning()) {
+            zombie.extinguish();
+        } else if (AllEntityConfig.sunDamageEnabled && zombie.worldObj.isDaytime() && !zombie.worldObj.isRemote) {
+            handleSunlightDamage(zombie);
+        }
+    }
+
+    private void handleSunlightDamage(EntityZombie zombie) {
+        if (zombie.worldObj.canBlockSeeTheSky((int) zombie.posX, (int) zombie.posY, (int) zombie.posZ) && zombie.getBrightness(1.0F) > 0.5F) {
+            zombie.setFire(8);
+        }
+    }
+
+    @ForgeSubscribe
+    public void onZombieAttack(LivingAttackEvent event) {
+        Entity attacker = event.source.getEntity();
+
+        // Vérifie que l'attaquant est un zombie Vanilla
+        if (!(attacker instanceof EntityZombie)) {
+            return;
+        }
+
+        EntityZombie zombie = (EntityZombie) attacker;
+
+        int damage;
+        if (AllEntityConfig.enableZombieConfig) {
+            // Utilise la configuration unique
+            ZombieConfig config = ConfigZombieManager.getZombieConfig("ZombieVanilla");
+            damage = config != null ? config.damage : 5;
+        } else {
+            // Utilise la configuration globale
+            damage = (int) AllEntityConfig.globalDamage;
+        }
+
+        // Inflige les dégâts personnalisés et annule l'événement pour éviter le double-dégât
+        event.entityLiving.attackEntityFrom(DamageSource.causeMobDamage(zombie), damage);
+        event.setCanceled(true);
+    }
+}
